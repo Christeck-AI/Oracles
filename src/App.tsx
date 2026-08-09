@@ -17,7 +17,7 @@ const UI_TEXT = {
     ichingTitle: "I-Ching. Oráculo de Individuación",
     questionPlaceholder: "Escribe tu pregunta",
     ichingDesc: "El libro de las mutaciones. Revela las fuerzas dinámicas y los cambios en tu estado actual.",
-    tarotTitle: "Tarot",
+    tarotTitle: "Tarot. Oráculo de Divinación",
     tarotDesc: "El Viaje del Héroe. Explora los arquetipos psicológicos y el proceso de individuación en tu psique.",
     backToMenu: "← Volver al Menú",
     themeLight: "Claro",
@@ -58,7 +58,7 @@ const UI_TEXT = {
     ichingTitle: "I-Ching. Oracle of Individuation",
     questionPlaceholder: "Write your question",
     ichingDesc: "The book of changes. Reveals the dynamic forces and shifts in your current state.",
-    tarotTitle: "Tarot",
+    tarotTitle: "Tarot. Oracle of Divination",
     tarotDesc: "The Hero's Journey. Explore the psychological archetypes and the individuation process within your psyche.",
     backToMenu: "← Back to Menu",
     themeLight: "Light",
@@ -162,6 +162,9 @@ function App() {
   // --- Tarot Handlers ---
   const handleDrawTarot = () => {
     if (isDrawingTarot) return;
+    if (question.trim() !== "") {
+      setQuestion("");
+    }
     setIsDrawingTarot(true);
     setTarotSpread(null);
     
@@ -174,6 +177,7 @@ function App() {
   };
 
   const handleRestartTarot = () => {
+    setQuestion("");
     setTarotSpread(null);
     setIsDrawingTarot(false);
   };
@@ -415,6 +419,16 @@ function App() {
         <main className="tarot-container">
           {!tarotSpread ? (
             <div className="tarot-intro glass-panel">
+              <h2 className="oracle-title" style={{ marginBottom: '1rem' }}>{text.tarotTitle}</h2>
+              <div className="question-input-container" style={{ width: '100%', maxWidth: '400px', marginBottom: '1rem' }}>
+                <input 
+                  type="text" 
+                  className="question-input" 
+                  placeholder={text.questionPlaceholder}
+                  value={question}
+                  onChange={(e) => setQuestion(e.target.value)}
+                />
+              </div>
               <div className="oracle-icon" style={{ fontSize: '4rem', marginBottom: '1rem' }}>🃏</div>
               <p style={{ fontStyle: "italic", color: "var(--text-secondary)", marginBottom: '2rem', maxWidth: '600px', textAlign: 'center' }}>
                 {text.tarotIntroText}
