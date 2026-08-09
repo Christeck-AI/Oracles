@@ -22,6 +22,7 @@ export interface HexagramData {
   };
   summary: { es: string; en: string };
   heroJourneyStage: { es: string; en: string };
+  lines?: { [key: number]: { es: string; en: string } };
 }
 
 // Trigram definitions (from line 1 to 3, bottom-to-top)
@@ -48,6 +49,42 @@ const hexagramMatrix: Record<string, Record<string, number>> = {
   Tui: { Chien: 10, Chen: 54, Kan: 60, Ken: 41, Kun: 19, Sun: 61, Li: 38, Tui: 58 }
 };
 
+import hex_1_4 from './data/hex_1_4.json';
+import hex_5_8 from './data/hex_5_8.json';
+import hex_9_12 from './data/hex_9_12.json';
+import hex_13_16 from './data/hex_13_16.json';
+import hex_17_20 from './data/hex_17_20.json';
+import hex_21_24 from './data/hex_21_24.json';
+import hex_25_28 from './data/hex_25_28.json';
+import hex_29_32 from './data/hex_29_32.json';
+import hex_33_36 from './data/hex_33_36.json';
+import hex_37_40 from './data/hex_37_40.json';
+import hex_41_44 from './data/hex_41_44.json';
+import hex_45_48 from './data/hex_45_48.json';
+import hex_49_52 from './data/hex_49_52.json';
+import hex_53_56 from './data/hex_53_56.json';
+import hex_57_60 from './data/hex_57_60.json';
+import hex_61_64 from './data/hex_61_64.json';
+
+const allHexData: Record<string, any> = {
+  ...hex_1_4,
+  ...hex_5_8,
+  ...hex_9_12,
+  ...hex_13_16,
+  ...hex_17_20,
+  ...hex_21_24,
+  ...hex_25_28,
+  ...hex_29_32,
+  ...hex_33_36,
+  ...hex_37_40,
+  ...hex_41_44,
+  ...hex_45_48,
+  ...hex_49_52,
+  ...hex_53_56,
+  ...hex_57_60,
+  ...hex_61_64
+};
+
 // Mock descriptions for testing the UI. 
 // These will be fully expanded dynamically by the Python pipeline to detailed JSONs later.
 export const getHexagramBasicData = (num: number, lower: TrigramInfo, upper: TrigramInfo): HexagramData => {
@@ -67,7 +104,7 @@ export const getHexagramBasicData = (num: number, lower: TrigramInfo, upper: Tri
     3: {
       es: "La Dificultad Inicial", en: "Difficulty at the Beginning", pinyin: "Chun",
       summaryEs: "Representa el caos creativo del héroe enfrentando por primera vez el Umbral. El brote verde que rompe la tierra dura y seca.",
-      summaryEn: "Represents the creative chaos of the hero first facing the Threshold. The green shoot breaking through hard, dry earth.",
+      summaryEn: "Representing the creative chaos of the hero first facing the Threshold. The green shoot breaking through hard, dry earth.",
       stageEs: "El Cruce del Primer Umbral", stageEn: "Crossing the First Threshold"
     },
     4: {
@@ -76,7 +113,6 @@ export const getHexagramBasicData = (num: number, lower: TrigramInfo, upper: Tri
       summaryEn: "The inexperience of the young ego seeking guidance. Symbolizes the need for an archetypal mentor to avoid inflation.",
       stageEs: "Encuentro con el Mentor", stageEn: "Meeting with the Mentor"
     },
-    // Fallback dictionary for all other numbers to keep the file light but fully typed
   };
 
   const fallback = {
@@ -90,6 +126,7 @@ export const getHexagramBasicData = (num: number, lower: TrigramInfo, upper: Tri
   };
 
   const info = names[num] || fallback;
+  const aiData = allHexData[String(num)];
 
   return {
     number: num,
@@ -99,8 +136,15 @@ export const getHexagramBasicData = (num: number, lower: TrigramInfo, upper: Tri
       en: `${upper.symbol.en} over ${lower.symbol.en}`
     },
     trigrams: { upper, lower },
-    summary: { es: info.summaryEs, en: info.summaryEn },
-    heroJourneyStage: { es: info.stageEs, en: info.stageEn }
+    summary: { 
+      es: aiData ? aiData.summaryEs : info.summaryEs, 
+      en: aiData ? aiData.summaryEn : info.summaryEn 
+    },
+    heroJourneyStage: { 
+      es: aiData ? aiData.stageEs : info.stageEs, 
+      en: aiData ? aiData.stageEn : info.stageEn 
+    },
+    lines: aiData ? aiData.lines : undefined
   };
 };
 

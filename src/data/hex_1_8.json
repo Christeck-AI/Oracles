@@ -1,0 +1,258 @@
+{
+  "1": {
+    "summaryEs": "El Creador representa la fuerza activa primaria de la psique (el Ánimus), el impulso irrefrenable hacia la consciencia. En el contexto de Carl Jung, es el arquetipo del Padre Divino y la energía espiritual pura que busca manifestarse. Joseph Campbell lo ubicaría como el 'Llamado a la Aventura', ese momento crucial donde el ego siente la necesidad de trascender la estasis y emprender el Viaje del Héroe. Sugiere una acción perseverante, guiada no por el egoísmo, sino por la profunda necesidad de individuación.",
+    "summaryEn": "The Creative represents the primary active force of the psyche (the Animus), the unstoppable impulse towards consciousness. In Carl Jung's context, it is the archetype of the Divine Father and pure spiritual energy seeking manifestation. Joseph Campbell would place it as the 'Call to Adventure', that crucial moment where the ego feels the need to transcend stasis and undertake the Hero's Journey. It suggests persevering action, guided not by egoism, but by the profound need for individuation.",
+    "stageEs": "El Llamado a la Aventura",
+    "stageEn": "The Call to Adventure",
+    "lines": {
+      "1": {
+        "es": "Dragón escondido. No actuar. La libido y el potencial creativo aún están latentes en el inconsciente colectivo. Es prematuro forzar la acción en el mundo real.",
+        "en": "Hidden dragon. Do not act. The libido and creative potential are still latent in the collective unconscious. It is premature to force action in the real world."
+      },
+      "2": {
+        "es": "El dragón aparece en el campo. Es ventajoso ver al gran hombre. El ego comienza a despuntar y a reconocer a su mentor interno (el Sí Mismo).",
+        "en": "Dragon appearing in the field. It furthers one to see the great man. The ego begins to emerge and recognize its internal mentor (the Self)."
+      },
+      "3": {
+        "es": "Activo y vigilante todo el día. Peligro, pero sin culpa. Tensión extrema entre las demandas del mundo consciente y las energías emergentes del inconsciente.",
+        "en": "Active and vigilant all day. Danger, but no blame. Extreme tension between the demands of the conscious world and the emerging energies of the unconscious."
+      },
+      "4": {
+        "es": "Vuelo vacilante sobre los abismos. El punto de inflexión. El héroe titubea en el umbral antes de saltar hacia lo desconocido para transformar su vida.",
+        "en": "Wavering flight over the depths. The turning point. The hero hesitates at the threshold before leaping into the unknown to transform his life."
+      },
+      "5": {
+        "es": "Dragón volando en el cielo. El momento de la Apoteosis. Integración plena de la psique; tu influencia interna moldea armónicamente el mundo exterior.",
+        "en": "Flying dragon in the heavens. The moment of Apotheosis. Full integration of the psyche; your internal influence harmoniously shapes the outer world."
+      },
+      "6": {
+        "es": "Dragón arrogante tendrá de qué arrepentirse. El peligro de la 'inflación del ego' junguiana, creyéndose absoluto y desconectándose de la realidad terrenal.",
+        "en": "Arrogant dragon will have cause to repent. The danger of Jungian 'ego inflation', believing oneself absolute and disconnecting from earthly reality."
+      }
+    }
+  },
+  "2": {
+    "summaryEs": "Lo Receptivo es la matriz matriz psicológica, el Ánima, el principio del Yin. Para Jung, simboliza el arquetipo de la Gran Madre, la vasta profundidad del inconsciente donde las semillas de la consciencia deben reposar y gestarse. Campbell asocia esta etapa con el 'Vientre de la Ballena', un estado de rendición pasiva, disolución del ego temporal y profunda introversión. Aquí, la asimilación paciente y devota es la clave para la supervivencia y el eventual renacimiento.",
+    "summaryEn": "The Receptive is the psychological matrix, the Anima, the principle of Yin. For Jung, it symbolizes the archetype of the Great Mother, the vast depth of the unconscious where the seeds of consciousness must rest and gestate. Campbell associates this stage with the 'Belly of the Whale', a state of passive surrender, temporary ego dissolution, and profound introversion. Here, patient and devoted assimilation is the key to survival and eventual rebirth.",
+    "stageEs": "El Vientre de la Ballena",
+    "stageEn": "The Belly of the Whale",
+    "lines": {
+      "1": {
+        "es": "Escarcha bajo los pies; el hielo se acerca. Presta atención a los síntomas sutiles y a la intuición (la Sombra) antes de que cristalicen en neurosis rígidas.",
+        "en": "Treading on hoarfrost; solid ice is near. Pay attention to subtle symptoms and intuition (the Shadow) before they crystallize into rigid neuroses."
+      },
+      "2": {
+        "es": "Directo, cuadrado, grande. Sin propósito, todo prospera. Aceptación incondicional de los procesos naturales. La individuación ocurre al no resistir la corriente.",
+        "en": "Straight, square, great. Without purpose, everything prospers. Unconditional acceptance of natural processes. Individuation occurs by not resisting the current."
+      },
+      "3": {
+        "es": "Ocultando la propia luz. Perseverancia trae fortuna. El trabajo en la Sombra no requiere reconocimiento público. Somete el ego a un fin transpersonal.",
+        "en": "Hiding one's light. Perseverance brings fortune. Work on the Shadow requires no public recognition. Submit the ego to a transpersonal end."
+      },
+      "4": {
+        "es": "Saco atado. Ni elogios ni culpas. Aislamiento protector absoluto. El héroe se retira completamente al capullo interior para sobrevivir a un entorno hostil.",
+        "en": "A tied sack. No blame, no praise. Absolute protective isolation. The hero retreats completely into the inner cocoon to survive a hostile environment."
+      },
+      "5": {
+        "es": "Orla amarilla en la vestidura inferior. El equilibrio dorado. La verdad interna brilla discretamente y guía las acciones sin ostentación narcisista.",
+        "en": "Yellow lower garment. The golden balance. Inner truth shines discreetly and guides actions without narcissistic ostentation."
+      },
+      "6": {
+        "es": "Dragones luchan en el descampado. Su sangre es negra y amarilla. Conflicto destructivo causado por un ego femenino (Receptivo) que intenta usurpar violentamente al Creador.",
+        "en": "Dragons fight in the meadow. Their blood is black and yellow. Destructive conflict caused by a feminine ego (Receptive) violently attempting to usurp the Creative."
+      }
+    }
+  },
+  "3": {
+    "summaryEs": "La Dificultad Inicial evoca el tumulto y el esfuerzo de un nuevo nacimiento psíquico. Como una semilla germinando contra una roca, el ego se enfrenta al caos inestructurado de sus nuevas realizaciones. Jung describiría esto como la angustia que precede a la integración de un nuevo arquetipo. En la mitología de Campbell, es el 'Cruce del Primer Umbral': el mundo conocido queda atrás, y abundan peligros y pruebas incomprensibles. Se recomienda paciencia estructurada y buscar a mentores u 'aliados'.",
+    "summaryEn": "Difficulty at the Beginning evokes the tumult and effort of a new psychic birth. Like a seed germinating against a rock, the ego faces the unstructured chaos of its new realizations. Jung would describe this as the anguish preceding the integration of a new archetype. In Campbell's mythology, it is the 'Crossing of the First Threshold': the known world is left behind, and incomprehensible dangers and trials abound. Structured patience and seeking mentors or 'allies' are recommended.",
+    "stageEs": "Cruce del Primer Umbral",
+    "stageEn": "Crossing the First Threshold",
+    "lines": {
+      "1": {
+        "es": "Vacilación y obstáculo. Favorable buscar ayudantes. El héroe duda ante la magnitud de la tarea; requiere humildad para aceptar guías espirituales o mundanos.",
+        "en": "Hesitation and hindrance. Favorable to appoint helpers. The hero doubts before the magnitude of the task; requires humility to accept spiritual or worldly guides."
+      },
+      "2": {
+        "es": "Dificultades se acumulan. Retrocede, no es un asaltante sino un pretendiente. Confusión en proyectar el mal en alguien que, en realidad, trae una alianza a largo plazo.",
+        "en": "Difficulties pile up. Retreats, it is not a robber but a wooer. Confusion in projecting evil onto someone who, in reality, brings a long-term alliance."
+      },
+      "3": {
+        "es": "Cazar ciervos sin guía solo lleva a perderse en el bosque. Perseguir metas psíquicas profundas sin dirección o análisis consciente lleva a extraviarse en neurosis.",
+        "en": "Hunting deer without a guide only leads one astray in the forest. Pursuing deep psychic goals without direction or conscious analysis leads to getting lost in neurosis."
+      },
+      "4": {
+        "es": "Caballos se separan. Lucha por la unión. Favorable avanzar. Reconocer que la fuerza personal no basta; la unión con el Sí Mismo o con aliados es obligatoria ahora.",
+        "en": "Horses part. Strive for union. Favorable to advance. Recognizing that personal strength is not enough; union with the Self or allies is mandatory now."
+      },
+      "5": {
+        "es": "Dificultades para bendecir. Pequeña perseverancia trae fortuna. Las intenciones puras chocan con incomprensión exterior. Avanzar poco a poco y con cautela.",
+        "en": "Difficulties in blessing. A little perseverance brings fortune. Pure intentions clash with external misunderstanding. Advance little by little and with caution."
+      },
+      "6": {
+        "es": "Caballos se separan. Lágrimas de sangre. Fijación trágica en el obstáculo. Rendirse al miedo impide la individuación y paraliza irremediablemente el alma.",
+        "en": "Horses part. Tears of blood. Tragic fixation on the obstacle. Surrendering to fear prevents individuation and hopelessly paralyzes the soul."
+      }
+    }
+  },
+  "4": {
+    "summaryEs": "La Necedad Juvenil (o Inexperiencia) representa el arquetipo del 'Puer Aeternus' (el niño eterno), lleno de potencial pero carente de límites y disciplina. Psicológicamente, indica una fase donde el ego no comprende las leyes universales. En el Viaje del Héroe, este hexagrama rige el 'Encuentro con el Mentor'. El aprendiz debe abandonar la arrogancia para recibir la verdadera gnosis. El oráculo no responde a preguntas repetitivas o irrespetuosas, reflejando que el inconsciente solo se abre a una mente sinceramente dispuesta y humilde.",
+    "summaryEn": "Youthful Folly (or Inexperience) represents the archetype of the 'Puer Aeternus' (the eternal child), full of potential but lacking limits and discipline. Psychologically, it indicates a phase where the ego does not understand universal laws. In the Hero's Journey, this hexagram governs the 'Meeting with the Mentor'. The apprentice must abandon arrogance to receive true gnosis. The oracle does not respond to repetitive or disrespectful questions, reflecting that the unconscious only opens to a sincerely willing and humble mind.",
+    "stageEs": "Encuentro con el Mentor",
+    "stageEn": "Meeting with the Mentor",
+    "lines": {
+      "1": {
+        "es": "Para educar al necio es necesaria la disciplina, pero quitar los grilletes evita la humillación. Establecer límites al ego infantil sin castrar su libido natural.",
+        "en": "To educate the fool discipline is needed, but removing fetters avoids humiliation. Establish limits to the infantile ego without castrating its natural libido."
+      },
+      "2": {
+        "es": "Soportar a los necios con dulzura trae fortuna. El líder o la faceta madura de la psique integra tolerablemente los aspectos inmaduros sin juzgarlos destructivamente.",
+        "en": "To bear with fools in kindliness brings good fortune. The leader or mature facet of the psyche tolerably integrates immature aspects without judging them destructively."
+      },
+      "3": {
+        "es": "No tomar por esposa a quien pierde su propia virtud ante un hombre fuerte. Advertencia contra imitar servilmente un ideal o gurú, perdiendo la propia individualidad.",
+        "en": "Take not a maiden who loses her virtue to a strong man. Warning against servilely imitating an ideal or guru, losing one's own individuality."
+      },
+      "4": {
+        "es": "Necedad entrelazada trae humillación. El ego rechaza la guía, encerrándose en sus propias fantasías neuróticas. Dejar que enfrente el doloroso golpe de la realidad.",
+        "en": "Entangled folly brings humiliation. The ego rejects guidance, locking itself in its own neurotic fantasies. Let it face the painful blow of reality."
+      },
+      "5": {
+        "es": "Necedad infantil trae fortuna. Una actitud de aprendiz abierta, inocente y libre de prejuicios garantiza que el conocimiento del Sí Mismo será absorbido correctamente.",
+        "en": "Childlike folly brings good fortune. An open, innocent, and unprejudiced apprentice attitude guarantees that the knowledge of the Self will be absorbed correctly."
+      },
+      "6": {
+        "es": "Castigar la necedad. Prevenir abusos es mejor que cometer injusticias. Una intervención estricta (defensa psíquica firme) es necesaria para detener dinámicas destructivas.",
+        "en": "In punishing folly, preventing abuse is better than committing injustice. Strict intervention (firm psychic defense) is necessary to stop destructive dynamics."
+      }
+    }
+  },
+  "5": {
+    "summaryEs": "La Espera (La Nutrición) remite al estado de incubación necesario antes de enfrentar las grandes tormentas de la vida. Psicológicamente, indica que el inconsciente está trabajando, ordenando símbolos y fuerzas; empujar ansiosamente desde el ego solo estropearía el proceso. En el ciclo heroico, equivale a una parada estratégica, reuniendo provisiones ('alimento y bebida') y fuerzas mentales antes del descenso definitivo al submundo. La seguridad interna y la confianza en la Sincronicidad traen la paz en medio de la niebla.",
+    "summaryEn": "Waiting (Nourishment) refers to the state of incubation necessary before facing the great storms of life. Psychologically, it indicates that the unconscious is working, ordering symbols and forces; anxiously pushing from the ego would only spoil the process. In the heroic cycle, it equates to a strategic stop, gathering provisions ('food and drink') and mental strength before the definitive descent into the underworld. Inner security and trust in Synchronicity bring peace amidst the fog.",
+    "stageEs": "Preparación y Recolección",
+    "stageEn": "Preparation and Gathering",
+    "lines": {
+      "1": {
+        "es": "Esperando en la pradera. Constancia. El peligro está lejos. Evita crear angustias prematuras en tu mente; vive el presente manteniendo la psique relajada.",
+        "en": "Waiting in the meadow. Constancy. The danger is far away. Avoid creating premature anxieties in your mind; live in the present keeping the psyche relaxed."
+      },
+      "2": {
+        "es": "Esperando en la arena. Surgen habladurías. Las críticas externas o las dudas del ego amenazan tu paz. La paciencia serena (no defensiva) disolverá el conflicto.",
+        "en": "Waiting on the sand. Gossip arises. External criticisms or ego doubts threaten your peace. Serene (non-defensive) patience will dissolve the conflict."
+      },
+      "3": {
+        "es": "Esperando en el lodo provoca la llegada del enemigo. Acercarse demasiado a dinámicas destructivas o relaciones tóxicas activa sombras latentes que te arrastrarán.",
+        "en": "Waiting in the mud brings the arrival of the enemy. Getting too close to destructive dynamics or toxic relationships activates latent shadows that will drag you down."
+      },
+      "4": {
+        "es": "Esperando en la sangre. Salir del abismo. Situación crítica ineludible. Debes soltar el control y dejar que el destino actúe; la no-acción salva la integridad interior.",
+        "en": "Waiting in blood. Getting out of the pit. Inescapable critical situation. You must let go of control and let destiny act; non-action saves inner integrity."
+      },
+      "5": {
+        "es": "Esperando con banquete y bebida. Perseverancia afortunada. Se experimenta la gracia del fluir con el Todo. El sabio celebra el presente sin la ansiedad del mañana.",
+        "en": "Waiting with food and drink. Fortunate perseverance. Experiencing the grace of flowing with the Whole. The wise celebrate the present without anxiety for tomorrow."
+      },
+      "6": {
+        "es": "Cae en el pozo. Llegan tres huéspedes inesperados. El colapso del ego revela intervenciones sincrónicas (ayudas arquetípicas). Acepta con respeto lo imprevisto.",
+        "en": "Falling into the pit. Three unexpected guests arrive. The collapse of the ego reveals synchronistic interventions (archetypal aids). Accept the unforeseen with respect."
+      }
+    }
+  },
+  "6": {
+    "summaryEs": "El Conflicto (Sung) ilustra la fricción psíquica donde las fuerzas conscientes y las pulsiones inconscientes (o dos egos humanos) se mueven en direcciones opuestas e irreconciliables (como el Cielo ascendiendo y el Agua hundiéndose). Carl Jung explicaría esto como un choque con la Sombra, donde proyectamos nuestras partes no asimiladas en el 'enemigo'. En el modelo de Campbell, es el enfrentamiento con los 'Guardianes del Umbral'. La sabiduría aquí no es buscar la aniquilación del oponente (que es parte de uno mismo), sino buscar la mediación justa o la retirada antes de agotar la libido en una guerra inútil.",
+    "summaryEn": "Conflict (Sung) illustrates the psychic friction where conscious forces and unconscious drives (or two human egos) move in opposite, irreconcilable directions (like Heaven ascending and Water sinking). Carl Jung would explain this as a clash with the Shadow, where we project our unassimilated parts onto the 'enemy'. In Campbell's model, it is the confrontation with the 'Threshold Guardians'. Wisdom here is not seeking the annihilation of the opponent (who is part of oneself), but seeking just mediation or withdrawal before exhausting libido in a useless war.",
+    "stageEs": "Guardianes del Umbral",
+    "stageEn": "Threshold Guardians",
+    "lines": {
+      "1": {
+        "es": "Si no se perpetúa el conflicto, habrá chismes pero buen final. Cortar la proyección neurótica apenas empieza previene cicatrices duraderas en el alma.",
+        "en": "If the conflict is not perpetuated, there will be gossip but a good end. Cutting off the neurotic projection just as it starts prevents lasting scars on the soul."
+      },
+      "2": {
+        "es": "No se puede sostener el conflicto; vuelve al hogar. Rendirse ante un 'oponente' más fuerte o una verdad innegable no es debilidad, es sabiduría de preservación.",
+        "en": "One cannot engage in conflict; returns home. Surrendering to a stronger 'opponent' or an undeniable truth is not weakness, it is wisdom of preservation."
+      },
+      "3": {
+        "es": "Nutrirse de la antigua virtud. Peligro pero éxito final. Frente a la agitación, el ego debe anclarse en sus valores transpersonales más profundos sin buscar gloria.",
+        "en": "To nourish oneself on ancient virtue. Danger but final success. Facing turmoil, the ego must anchor itself in its deepest transpersonal values without seeking glory."
+      },
+      "4": {
+        "es": "No puede combatir, retorna a su propia paz. El individuo comprende que el conflicto exterior es un reflejo de un desorden interno, y elige la auto-indagación.",
+        "en": "Cannot engage in conflict, returns to his own peace. The individual understands that outer conflict is a reflection of inner disorder, and chooses self-inquiry."
+      },
+      "5": {
+        "es": "El arbitraje en el conflicto trae gran fortuna. La intervención del Sí Mismo (la máxima consciencia objetiva) reconcilia las paradojas internas y restaura la armonía.",
+        "en": "Arbitration in the conflict brings great fortune. The intervention of the Self (the highest objective consciousness) reconciles internal paradoxes and restores harmony."
+      },
+      "6": {
+        "es": "Incluso si gana una recompensa, le será arrebatada tres veces. El ego que triunfa mediante el conflicto tóxico queda atrapado en el complejo del odio, condenado a repetirlo.",
+        "en": "Even if he wins a reward, it will be snatched away three times. The ego that triumphs through toxic conflict is trapped in the hate complex, doomed to repeat it."
+      }
+    }
+  },
+  "7": {
+    "summaryEs": "El Ejército (Shih) simboliza la enorme masa de impulsos, instintos y emociones latentes en el inconsciente humano (el agua oculta bajo la tierra). Sin dirección, estas energías son destructivas y caóticas. Jung diría que representan el inmenso poder de la libido que necesita la guía firme pero compasiva de un ego centrado. Para Campbell, este es el entrenamiento del héroe preparándose para la 'Prueba Suprema', donde debe instaurar una estricta disciplina marcial en sus propios miedos y pasiones, usando la autoridad y la generosidad para lograr la unificación.",
+    "summaryEn": "The Army (Shih) symbolizes the enormous mass of impulses, instincts, and emotions latent in the human unconscious (the water hidden beneath the earth). Without direction, these energies are destructive and chaotic. Jung would say they represent the immense power of libido that needs the firm but compassionate guidance of a centered ego. For Campbell, this is the training of the hero preparing for the 'Supreme Ordeal', where he must establish a strict martial discipline over his own fears and passions, using authority and generosity to achieve unification.",
+    "stageEs": "Pruebas y Aliados (Disciplina Marcial)",
+    "stageEn": "Tests and Allies (Martial Discipline)",
+    "lines": {
+      "1": {
+        "es": "Un ejército marcha en orden; si no, amenaza desgracia. Toda incursión en el inconsciente debe tener justificación moral y un método disciplinado, de lo contrario llega la locura.",
+        "en": "An army marches in order; if not, misfortune threatens. Any incursion into the unconscious must have moral justification and disciplined method, otherwise madness ensues."
+      },
+      "2": {
+        "es": "Al centro del ejército. El líder recibe favor. El ego consciente dialoga y coopera activamente con la masa inconsciente, compartiendo responsabilidades y triunfos.",
+        "en": "In the midst of the army. The leader receives favor. The conscious ego actively dialogues and cooperates with the unconscious mass, sharing responsibilities and triumphs."
+      },
+      "3": {
+        "es": "El ejército transporta cadáveres. Interferencia nociva de complejos inferiores o egos alternos saboteando la misión por ignorar al líder central de la psique.",
+        "en": "The army carries corpses. Harmful interference from inferior complexes or alter egos sabotaging the mission by ignoring the central leader of the psyche."
+      },
+      "4": {
+        "es": "El ejército retrocede sin culpa. Reconocer los límites ante pulsiones insuperables. Retirarse para reevaluar la psicoterapia o la situación vital es coraje, no cobardía.",
+        "en": "The army retreats without blame. Recognizing limits before insurmountable drives. Retreating to reevaluate psychotherapy or the vital situation is courage, not cowardice."
+      },
+      "5": {
+        "es": "Caza en el campo. Que el mayor guíe y no la masa. En el combate con las sombras, el intelecto y la experiencia deben liderar para no caer en purgas crueles.",
+        "en": "Game in the field. Let the eldest lead and not the mob. In the battle with shadows, intellect and experience must lead to avoid falling into cruel purges."
+      },
+      "6": {
+        "es": "El soberano funda estados, pero no emplea gente inferior. Al alcanzar la meta, los impulsos bajos ('mercenarios' psíquicos) no deben ser retenidos en el nuevo orden interno.",
+        "en": "The sovereign founds states, but does not employ inferior people. Upon reaching the goal, base impulses (psychic 'mercenaries') must not be retained in the new inner order."
+      }
+    }
+  },
+  "8": {
+    "summaryEs": "La Solidaridad (Pi) o La Unión es la complementariedad magnética que enlaza partes dispares hacia un centro de gravedad coherente. En términos de individuación junguiana, simboliza la integración de las múltiples facetas de la personalidad (luz y sombra, ego y Sí Mismo) alrededor del núcleo inquebrantable del individuo. En la estructura del mito, es la reunión del héroe con sus 'Aliados' formando una hermandad sagrada o la unión alquímica interior necesaria para sobrevivir a las pruebas. Pide liderazgo moral y rechazo absoluto a pactar con el engaño.",
+    "summaryEn": "Solidarity (Pi) or Holding Together is the magnetic complementarity that links disparate parts towards a coherent center of gravity. In terms of Jungian individuation, it symbolizes the integration of the multiple facets of personality (light and shadow, ego and Self) around the unbreakable core of the individual. In the mythic structure, it is the reunion of the hero with their 'Allies' forming a sacred brotherhood or the inner alchemical union necessary to survive the trials. It demands moral leadership and absolute refusal to pact with deceit.",
+    "stageEs": "Unión con los Aliados",
+    "stageEn": "Union with Allies",
+    "lines": {
+      "1": {
+        "es": "Verdad y lealtad plenas. Buena fortuna de todos lados. La adhesión interior debe estar desprovista de adornos del ego; la sinceridad desnuda convoca maravillas sincrónicas.",
+        "en": "Full truth and loyalty. Good fortune from all sides. Inner adherence must be devoid of ego adornments; naked sincerity summons synchronistic wonders."
+      },
+      "2": {
+        "es": "Adherirse interiormente. Perseverancia afortunada. No pierdas tu dignidad rogando por validación exterior. Conecta profundamente con tu verdad interior y lo demás se alineará.",
+        "en": "Holding together inwardly. Fortunate perseverance. Do not lose your dignity begging for external validation. Connect deeply with your inner truth and the rest will align."
+      },
+      "3": {
+        "es": "Asociarse con gente inadecuada. Permanecer aferrado a complejos psíquicos agotados o relaciones vacías te desvía del propósito de tu alma.",
+        "en": "Associating with inappropriate people. Remaining attached to exhausted psychic complexes or empty relationships deflects you from your soul's purpose."
+      },
+      "4": {
+        "es": "Adherirse abiertamente al líder. Actuar con transparencia en alianzas donde no hay espacio para agendas ocultas ni dobles intenciones. Honestidad radical.",
+        "en": "Openly holding together with the leader. Acting transparently in alliances where there is no room for hidden agendas or double intentions. Radical honesty."
+      },
+      "5": {
+        "es": "Cacería real por tres lados, dejando el frente abierto. Libertad total en las alianzas psíquicas. El Sí Mismo no obliga a las facetas de la mente, las atrae por libre albedrío.",
+        "en": "Royal hunt from three sides, leaving the front open. Total freedom in psychic alliances. The Self does not coerce the facets of the mind, it attracts them by free will."
+      },
+      "6": {
+        "es": "Sin una cabeza para unir, infortunio. Omitir el momento adecuado para integrar la psique lleva a un caos permanente y pérdida del centro gravitacional espiritual.",
+        "en": "Without a head to unite, misfortune. Missing the right moment to integrate the psyche leads to permanent chaos and loss of the spiritual gravitational center."
+      }
+    }
+  }
+}

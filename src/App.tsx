@@ -6,84 +6,97 @@ import {
   CoinRollResult, 
   HexagramData 
 } from './ichingEngine';
+import { drawTarotSpread, SpreadDrawResult } from './tarotEngine';
 import './App.css';
 
 const UI_TEXT = {
   es: {
-    title: "Oráculo del I Ching Psicológico",
-    subtitle: "Sincronicidad, Individuación y el Viaje del Héroe",
+    title: "Oráculos de Individuación",
+    subtitle: "Sincronicidad y el Viaje del Héroe",
+    menuIntro: "Selecciona el espejo en el que deseas mirar tu psique hoy:",
+    ichingTitle: "I Ching",
+    ichingDesc: "El libro de las mutaciones. Revela las fuerzas dinámicas y los cambios en tu estado actual.",
+    tarotTitle: "Tarot",
+    tarotDesc: "El Viaje del Héroe. Explora los arquetipos psicológicos y el proceso de individuación en tu psique.",
+    backToMenu: "← Volver al Menú",
     themeLight: "Claro",
     themeDark: "Oscuro",
     langEs: "Español",
     langEn: "English",
+    
+    // I Ching specific
     rollButton: "Lanzar Monedas",
     rolling: "Volteando monedas...",
     restartButton: "Nueva Consulta",
     statusLines: (count: number) => `Línea ${count} de 6 generada`,
-    introText: "El I Ching es un espejo de tu mente inconsciente. Haz una pregunta en silencio, concéntrate y lanza las monedas 6 veces de abajo hacia arriba para revelar las fuerzas en juego en tu viaje interior.",
+    ichingIntroText: "El I Ching es un espejo de tu mente inconsciente. Haz una pregunta en silencio, concéntrate y lanza las monedas 6 veces de abajo hacia arriba para revelar las fuerzas en juego en tu viaje interior.",
     mutatingLines: "Líneas Mutantes",
     mutatingIntro: "Estas líneas inestables señalan los puntos de crisis y transformación en tu psique:",
     primaryHex: "Hexagrama Presente (El Estado de tu Ego)",
     secondaryHex: "Hexagrama Futuro (El Destino / Integración)",
     lineLabel: (index: number) => `Línea ${index}:`,
-    mutatedTo: "Mutado a:",
-    noMutations: "Tu estado actual es de equilibrio. No hay líneas mutantes. El camino actual es estable y no requiere transformaciones inmediatas.",
-    yinLabel: "Yin",
-    yangLabel: "Yang",
-    oldYin: "Viejo Yin (Mutante)",
-    oldYang: "Viejo Yang (Mutante)"
+    
+    // Tarot specific
+    drawTarotBtn: "Extraer Tirada (3 Cartas)",
+    drawingTarot: "Barajando el mazo...",
+    tarotIntroText: "El Tarot es un mapa simbólico del proceso de Individuación (Jung) y el Viaje del Héroe (Campbell). Las cartas actúan como espejos sincrísticos de tu psique. Concéntrate. Esta tirada revelará los arquetipos subconscientes de tu pasado, la máscara del ego en tu presente, y el punto de inflexión creativo de tu destino potencial.",
+    pastTitle: "Pasado (El Subconsciente)",
+    presentTitle: "Presente (El Consciente)",
+    futureTitle: "Posibilidades (El Punto de Inflexión)",
+    tarotCardOf: "Carta:",
+    tarotHeroStage: "Etapa del Viaje:",
+    tarotSummary: "Resumen Psicológico",
+    tarotSymbolism: "Simbología (Rider-Waite)",
+    tarotJungian: "Análisis Junguiano",
+    tarotHero: "El Viaje del Héroe"
   },
   en: {
-    title: "Psychological I Ching Oracle",
-    subtitle: "Synchronicity, Individuation and the Hero's Journey",
+    title: "Oracles of Individuation",
+    subtitle: "Synchronicity and the Hero's Journey",
+    menuIntro: "Select the mirror in which you wish to look at your psyche today:",
+    ichingTitle: "I Ching",
+    ichingDesc: "The book of changes. Reveals the dynamic forces and shifts in your current state.",
+    tarotTitle: "Tarot",
+    tarotDesc: "The Hero's Journey. Explore the psychological archetypes and the individuation process within your psyche.",
+    backToMenu: "← Back to Menu",
     themeLight: "Light",
     themeDark: "Dark",
     langEs: "Español",
     langEn: "English",
+    
+    // I Ching specific
     rollButton: "Throw Coins",
     rolling: "Flipping coins...",
     restartButton: "New Reading",
     statusLines: (count: number) => `Line ${count} of 6 generated`,
-    introText: "The I Ching is a mirror of your unconscious mind. Formulate a question silently, concentrate, and throw the coins 6 times from bottom to top to reveal the forces at play in your inner journey.",
+    ichingIntroText: "The I Ching is a mirror of your unconscious mind. Formulate a question silently, concentrate, and throw the coins 6 times from bottom to top to reveal the forces at play in your inner journey.",
     mutatingLines: "Mutating Lines",
     mutatingIntro: "These unstable lines point to the spots of crisis and transformation in your psyche:",
     primaryHex: "Present Hexagram (The State of your Ego)",
     secondaryHex: "Future Hexagram (The Destination / Integration)",
     lineLabel: (index: number) => `Line ${index}:`,
-    mutatedTo: "Mutated to:",
-    noMutations: "Your current state is in equilibrium. There are no mutating lines. The present path is stable and requires no immediate transformation.",
-    yinLabel: "Yin",
-    yangLabel: "Yang",
-    oldYin: "Old Yin (Mutating)",
-    oldYang: "Old Yang (Mutating)"
+    
+    // Tarot specific
+    drawTarotBtn: "Draw Spread (3 Cards)",
+    drawingTarot: "Shuffling deck...",
+    tarotIntroText: "The Tarot is a symbolic map of the Individuation process (Jung) and the Hero's Journey (Campbell). The cards act as synchronistic mirrors of your psyche. Focus. This spread will reveal the subconscious archetypes shaping your past, the mask of the ego in your present, and the creative inflection point of your potential destiny.",
+    pastTitle: "Past (The Subconscious)",
+    presentTitle: "Present (The Conscious)",
+    futureTitle: "Possibilities (The Inflection Point)",
+    tarotCardOf: "Card:",
+    tarotHeroStage: "Journey Stage:",
+    tarotSummary: "Psychological Summary",
+    tarotSymbolism: "Symbolism (Rider-Waite)",
+    tarotJungian: "Jungian Analysis",
+    tarotHero: "The Hero's Journey"
   }
 };
 
-// Simplified translation values for mutating lines in classical I Ching
-const lineTranslations: Record<number, Record<number, { es: string; en: string }>> = {
-  1: { // Hexagram 1 lines
-    1: { es: "Dragón escondido. No actuar. La fuerza creativa aún está latente en el inconsciente.", en: "Hidden dragon. Do not act. The creative force is still latent in the unconscious." },
-    2: { es: "El dragón aparece en el campo. Es ventajoso ver al gran hombre. El ego comienza a manifestar su potencial.", en: "Dragon appearing in the field. Advantageous to see the great man. The ego begins to manifest its potential." },
-    3: { es: "El hombre superior trabaja todo el día. Peligro pero sin reproches. Gran esfuerzo y tensión en el mundo consciente.", en: "The superior man works all day. Danger but no blame. Great effort and tension in the conscious world." },
-    4: { es: "Vuelo hesitante sobre los abismos. La prueba de decisión antes de tomar la vía del héroe.", en: "Hesitant flight over the depths. The test of decision before taking the hero's path." },
-    5: { es: "Dragón volando en el cielo. Integración del Sí Mismo y manifestación de tu verdadera esencia.", en: "Flying dragon in the sky. Integration of the Self and manifestation of your true essence." },
-    6: { es: "Dragón arrogante deberá arrepentirse. Cuidado con la inflación del ego al alcanzar la cumbre.", en: "Arrogant dragon will have cause to repent. Beware of ego inflation upon reaching the summit." }
-  },
-  2: { // Hexagram 2 lines
-    1: { es: "Escarcha bajo los pies. El hielo firme se acerca. Atención a las señales sutiles de la sombra.", en: "Frost underfoot. Solid ice is near. Pay attention to the shadow's subtle signs." },
-    2: { es: "Directo, cuadrado, grande. Sin propósito previo, todo es favorecido. Fluir natural con el inconsciente.", en: "Straight, square, great. Without prior purpose, everything is favored. Natural flow with the unconscious." },
-    3: { es: "Líneas ocultas. Mantenerse perseverante. Humildad al servicio de una causa superior.", en: "Hidden lines. Remain persevering. Humility in service of a greater cause." },
-    4: { es: "Un talego amarrado. Ni alabanzas ni reproches. Retirada y reserva voluntaria de la libido.", en: "A tied sack. No praise, no blame. Voluntary withdrawal and reserve of libido." },
-    5: { es: "Una orla amarilla en el traje. Éxito discreto a través de la rectitud y la justicia interna.", en: "A yellow undergarment. Discrete success through inner rectitude and justice." },
-    6: { es: "Los dragones luchan en el espacio. Su sangre es negra y amarilla. Conflicto severo entre fuerzas opuestas de la mente.", en: "Dragons fight in the wild. Their blood is black and yellow. Severe conflict between opposing forces of the mind." }
+const getLineInterpretation = (hexData: HexagramData, lineIndex: number, lang: "es" | "en") => {
+  if (hexData.lines && (hexData.lines as any)[lineIndex]) {
+    return (hexData.lines as any)[lineIndex][lang];
   }
-};
-
-const getLineInterpretation = (hexNum: number, lineIndex: number, lang: "es" | "en") => {
-  const custom = lineTranslations[hexNum]?.[lineIndex];
-  if (custom) return custom[lang];
   
-  // Generic psychological interpretation fallback
   if (lang === "es") {
     return `Línea ${lineIndex} en mutación: Señala una transición en este aspecto de tu vida. Jung sugiere observar esta tensión para integrarla como parte de tu individuación.`;
   } else {
@@ -94,25 +107,33 @@ const getLineInterpretation = (hexNum: number, lineIndex: number, lang: "es" | "
 function App() {
   const [lang, setLang] = useState<"es" | "en">("es");
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [activeOracle, setActiveOracle] = useState<"menu" | "iching" | "tarot">("menu");
   
-  // Reading states
+  // I Ching Reading states
   const [lines, setLines] = useState<LineValue[]>([]);
   const [isRolling, setIsRolling] = useState(false);
   const [rollResult, setRollResult] = useState<CoinRollResult | null>(null);
-  const [activeTab, setActiveTab] = useState<"primary" | "mutations" | "secondary">("primary");
+  const [activeIChingTab, setActiveIChingTab] = useState<"primary" | "mutations" | "secondary">("primary");
+
+  // Tarot Reading states
+  const [isDrawingTarot, setIsDrawingTarot] = useState(false);
+  const [tarotSpread, setTarotSpread] = useState<SpreadDrawResult | null>(null);
+  const [activeTarotTab, setActiveTarotTab] = useState<"past" | "present" | "future">("past");
 
   // Sync HTML theme attribute
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+  const toggleLanguage = () => setLang(prev => (prev === "es" ? "en" : "es"));
+  const toggleTheme = () => setTheme(prev => (prev === "light" ? "dark" : "light"));
+  const text = UI_TEXT[lang];
+
+  // --- I Ching Handlers ---
   const handleRoll = () => {
     if (lines.length >= 6 || isRolling) return;
-    
     setIsRolling(true);
     setRollResult(null);
-
-    // Simulate 3D rolling animation time
     setTimeout(() => {
       const res = rollCoins();
       setRollResult(res);
@@ -121,26 +142,41 @@ function App() {
     }, 800);
   };
 
-  const handleRestart = () => {
+  const handleRestartIChing = () => {
     setLines([]);
     setRollResult(null);
     setIsRolling(false);
-    setActiveTab("primary");
+    setActiveIChingTab("primary");
   };
 
-  const toggleLanguage = () => {
-    setLang(prev => (prev === "es" ? "en" : "es"));
+  const isIChingFinished = lines.length === 6;
+  const ichingInterpretation = isIChingFinished ? interpretHexagram(lines) : null;
+
+  // --- Tarot Handlers ---
+  const handleDrawTarot = () => {
+    if (isDrawingTarot) return;
+    setIsDrawingTarot(true);
+    setTarotSpread(null);
+    
+    // Simulate shuffling time
+    setTimeout(() => {
+      setTarotSpread(drawTarotSpread());
+      setIsDrawingTarot(false);
+      setActiveTarotTab("past");
+    }, 1500);
   };
 
-  const toggleTheme = () => {
-    setTheme(prev => (prev === "light" ? "dark" : "light"));
+  const handleRestartTarot = () => {
+    setTarotSpread(null);
+    setIsDrawingTarot(false);
   };
 
-  const text = UI_TEXT[lang];
-  const isFinished = lines.length === 6;
-  
-  // Interpret hexagrams when roll is complete
-  const interpretation = isFinished ? interpretHexagram(lines) : null;
+  const goBackToMenu = () => {
+    setActiveOracle("menu");
+    // Optionally reset states when going back
+    handleRestartIChing();
+    handleRestartTarot();
+  };
 
   return (
     <div className="app-container">
@@ -159,195 +195,324 @@ function App() {
         </div>
       </header>
 
-      <main className="app-grid">
-        {/* Left column: Oracular Board & Coin rollers */}
-        <section className="glass-panel oracle-section">
-          <h2>{isFinished ? text.restartButton : text.rollButton}</h2>
-          
-          <div className="coins-container">
-            {rollResult ? (
-              rollResult.coins.map((coin, index) => (
-                <div 
-                  key={index} 
-                  className={`coin ${isRolling ? 'flipping' : ''} ${coin === 2 ? 'yin' : 'yang'}`}
-                >
-                  {coin === 2 ? "☯" : "✵"}
-                  <div className="coin-inner"></div>
-                </div>
-              ))
+      {/* BACK BUTTON */}
+      {activeOracle !== "menu" && (
+        <button className="btn-back" onClick={goBackToMenu}>
+          {text.backToMenu}
+        </button>
+      )}
+
+      {/* --- MENU VIEW --- */}
+      {activeOracle === "menu" && (
+        <main className="menu-container">
+          <p className="menu-intro">{text.menuIntro}</p>
+          <div className="oracle-cards">
+            <div className="oracle-selection-card glass-panel" onClick={() => setActiveOracle("tarot")}>
+              <div className="oracle-icon">🃏</div>
+              <h2>{text.tarotTitle}</h2>
+              <p>{text.tarotDesc}</p>
+            </div>
+            <div className="oracle-selection-card glass-panel" onClick={() => setActiveOracle("iching")}>
+              <div className="oracle-icon">☯</div>
+              <h2>{text.ichingTitle}</h2>
+              <p>{text.ichingDesc}</p>
+            </div>
+          </div>
+        </main>
+      )}
+
+      {/* --- I CHING VIEW --- */}
+      {activeOracle === "iching" && (
+        <main className="app-grid">
+          <section className="glass-panel oracle-section">
+            <h2>{isIChingFinished ? text.restartButton : text.rollButton}</h2>
+            <div className="coins-container">
+              {rollResult ? (
+                rollResult.coins.map((coin, index) => (
+                  <div key={index} className={`coin ${isRolling ? 'flipping' : ''} ${coin === 2 ? 'yin' : 'yang'}`}>
+                    {coin === 2 ? "☯" : "✵"}
+                    <div className="coin-inner"></div>
+                  </div>
+                ))
+              ) : (
+                [1, 2, 3].map(i => (
+                  <div key={i} className={`coin yin ${isRolling ? 'flipping' : ''}`}>
+                    ? <div className="coin-inner"></div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            <div style={{ marginBottom: "1rem" }}>
+              {lines.length > 0 && !isIChingFinished && (
+                <p className="badge-stage" style={{ alignSelf: "center" }}>
+                  {text.statusLines(lines.length)}
+                </p>
+              )}
+            </div>
+
+            {!isIChingFinished ? (
+              <button className="btn-roll" onClick={handleRoll} disabled={isRolling}>
+                {isRolling ? text.rolling : text.rollButton}
+              </button>
             ) : (
-              // Empty coin slots
-              [1, 2, 3].map(i => (
-                <div key={i} className={`coin yin ${isRolling ? 'flipping' : ''}`}>
-                  ?
-                  <div className="coin-inner"></div>
-                </div>
-              ))
+              <button className="btn-roll" onClick={handleRestartIChing}>
+                {text.restartButton}
+              </button>
             )}
-          </div>
 
-          <div style={{ marginBottom: "1rem" }}>
-            {lines.length > 0 && !isFinished && (
-              <p className="badge-stage" style={{ alignSelf: "center" }}>
-                {text.statusLines(lines.length)}
-              </p>
+            {lines.length > 0 && (
+              <div className="hexagram-board">
+                {lines.map((val, idx) => {
+                  const isYang = val === 7 || val === 9;
+                  const isMutating = val === 6 || val === 9;
+                  return (
+                    <div key={idx} className="hexagram-line-row">
+                      {isYang ? (
+                        <div className="line-solid" />
+                      ) : (
+                        <div className="line-broken">
+                          <div className="chunk" />
+                          <div className="chunk" />
+                        </div>
+                      )}
+                      {isMutating && (
+                        <span className="mutating-marker">
+                          {val === 6 ? "×" : "o"}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             )}
-          </div>
+          </section>
 
-          {!isFinished ? (
-            <button 
-              className="btn-roll" 
-              onClick={handleRoll} 
-              disabled={isRolling}
-            >
-              {isRolling ? text.rolling : text.rollButton}
-            </button>
-          ) : (
-            <button className="btn-roll" onClick={handleRestart}>
-              {text.restartButton}
-            </button>
-          )}
-
-          {/* Hexagram visualization board */}
-          {lines.length > 0 && (
-            <div className="hexagram-board">
-              {lines.map((val, idx) => {
-                const isYang = val === 7 || val === 9;
-                const isMutating = val === 6 || val === 9;
-                return (
-                  <div key={idx} className="hexagram-line-row">
-                    {isYang ? (
-                      <div className="line-solid" />
-                    ) : (
-                      <div className="line-broken">
-                        <div className="chunk" />
-                        <div className="chunk" />
-                      </div>
-                    )}
-                    {isMutating && (
-                      <span className="mutating-marker">
-                        {val === 6 ? "×" : "o"}
-                      </span>
+          <section className="reading-section">
+            {!isIChingFinished ? (
+              <div className="glass-panel hexagram-detail-card" style={{ fontStyle: "italic", color: "var(--text-secondary)" }}>
+                <p>{text.ichingIntroText}</p>
+              </div>
+            ) : (
+              ichingInterpretation && (
+                <div className="reading-panel">
+                  <div className="controls" style={{ marginBottom: "1.5rem" }}>
+                    <button 
+                      className="btn-icon" 
+                      style={{ 
+                        borderColor: activeIChingTab === "primary" ? "var(--accent)" : "var(--panel-border)",
+                        background: activeIChingTab === "primary" ? "var(--accent-light)" : "var(--panel-bg)",
+                        color: activeIChingTab === "primary" ? "var(--accent)" : "var(--text-primary)"
+                      }}
+                      onClick={() => setActiveIChingTab("primary")}
+                    >
+                      ☯ {text.primaryHex}
+                    </button>
+                    {ichingInterpretation.movingLines.length > 0 && (
+                      <>
+                        <button 
+                          className="btn-icon"
+                          style={{ 
+                            borderColor: activeIChingTab === "mutations" ? "var(--accent)" : "var(--panel-border)",
+                            background: activeIChingTab === "mutations" ? "var(--accent-light)" : "var(--panel-bg)",
+                            color: activeIChingTab === "mutations" ? "var(--accent)" : "var(--text-primary)"
+                          }}
+                          onClick={() => setActiveIChingTab("mutations")}
+                        >
+                          ⚡ {text.mutatingLines} ({ichingInterpretation.movingLines.length})
+                        </button>
+                        <button 
+                          className="btn-icon"
+                          style={{ 
+                            borderColor: activeIChingTab === "secondary" ? "var(--accent)" : "var(--panel-border)",
+                            background: activeIChingTab === "secondary" ? "var(--accent-light)" : "var(--panel-bg)",
+                            color: activeIChingTab === "secondary" ? "var(--accent)" : "var(--text-primary)"
+                          }}
+                          onClick={() => setActiveIChingTab("secondary")}
+                        >
+                          🔮 {text.secondaryHex}
+                        </button>
+                      </>
                     )}
                   </div>
-                );
-              })}
-            </div>
-          )}
-        </section>
 
-        {/* Right column: Results & Psychological Readings */}
-        <section className="reading-section">
-          {!isFinished ? (
-            <div className="glass-panel hexagram-detail-card" style={{ fontStyle: "italic", color: "var(--text-secondary)" }}>
-              <p>{text.introText}</p>
-            </div>
-          ) : (
-            interpretation && (
-              <div className="reading-panel">
-                {/* Navigation Tabs for results */}
-                <div className="controls" style={{ marginBottom: "1.5rem" }}>
-                  <button 
-                    className="btn-icon" 
-                    style={{ 
-                      borderColor: activeTab === "primary" ? "var(--accent)" : "var(--panel-border)",
-                      background: activeTab === "primary" ? "var(--accent-light)" : "var(--panel-bg)",
-                      color: activeTab === "primary" ? "var(--accent)" : "var(--text-primary)"
-                    }}
-                    onClick={() => setActiveTab("primary")}
-                  >
-                    ☯ {text.primaryHex}
-                  </button>
+                  {activeIChingTab === "primary" && (
+                    <div className="glass-panel hexagram-detail-card">
+                      <span className="hex-number">{text.primaryHex}</span>
+                      <h2 className="hex-title">
+                        {ichingInterpretation.primary.number}. {ichingInterpretation.primary.name[lang]}{" "}
+                        <span className="pinyin-title">({ichingInterpretation.primary.name.pinyin})</span>
+                      </h2>
+                      <p className="hex-image-label">{ichingInterpretation.primary.image[lang]}</p>
+                      <div className="badge-stage">
+                        🦸‍♂️ {ichingInterpretation.primary.heroJourneyStage[lang]}
+                      </div>
+                      <div className="hex-description">
+                        <p>{ichingInterpretation.primary.summary[lang]}</p>
+                      </div>
+                    </div>
+                  )}
 
-                  {interpretation.movingLines.length > 0 && (
-                    <>
-                      <button 
-                        className="btn-icon"
-                        style={{ 
-                          borderColor: activeTab === "mutations" ? "var(--accent)" : "var(--panel-border)",
-                          background: activeTab === "mutations" ? "var(--accent-light)" : "var(--panel-bg)",
-                          color: activeTab === "mutations" ? "var(--accent)" : "var(--text-primary)"
-                        }}
-                        onClick={() => setActiveTab("mutations")}
-                      >
-                        ⚡ {text.mutatingLines} ({interpretation.movingLines.length})
-                      </button>
+                  {activeIChingTab === "mutations" && (
+                    <div className="glass-panel hexagram-detail-card">
+                      <span className="hex-number">{text.mutatingLines}</span>
+                      <h2>{text.mutatingLines}</h2>
+                      <p style={{ color: "var(--text-secondary)", marginBottom: "1rem" }}>{text.mutatingIntro}</p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                        {ichingInterpretation.movingLines.map(lineNum => (
+                          <div key={lineNum} className="mutating-explanation">
+                            <strong>{text.lineLabel(lineNum)} </strong>
+                            <span>{getLineInterpretation(ichingInterpretation.primary, lineNum, lang)}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
-                      <button 
-                        className="btn-icon"
-                        style={{ 
-                          borderColor: activeTab === "secondary" ? "var(--accent)" : "var(--panel-border)",
-                          background: activeTab === "secondary" ? "var(--accent-light)" : "var(--panel-bg)",
-                          color: activeTab === "secondary" ? "var(--accent)" : "var(--text-primary)"
-                        }}
-                        onClick={() => setActiveTab("secondary")}
-                      >
-                        🔮 {text.secondaryHex}
-                      </button>
-                    </>
+                  {activeIChingTab === "secondary" && ichingInterpretation.secondary && (
+                    <div className="glass-panel hexagram-detail-card">
+                      <span className="hex-number">{text.secondaryHex}</span>
+                      <h2 className="hex-title">
+                        {ichingInterpretation.secondary.number}. {ichingInterpretation.secondary.name[lang]}{" "}
+                        <span className="pinyin-title">({ichingInterpretation.secondary.name.pinyin})</span>
+                      </h2>
+                      <p className="hex-image-label">{ichingInterpretation.secondary.image[lang]}</p>
+                      <div className="badge-stage">
+                        🌟 {ichingInterpretation.secondary.heroJourneyStage[lang]}
+                      </div>
+                      <div className="hex-description">
+                        <p>{ichingInterpretation.secondary.summary[lang]}</p>
+                      </div>
+                    </div>
                   )}
                 </div>
+              )
+            )}
+          </section>
+        </main>
+      )}
 
-                {/* Tab content 1: Primary Hexagram */}
-                {activeTab === "primary" && (
-                  <div className="glass-panel hexagram-detail-card">
-                    <span className="hex-number">{text.primaryHex}</span>
-                    <h2 className="hex-title">
-                      {interpretation.primary.number}. {interpretation.primary.name[lang]}{" "}
-                      <span className="pinyin-title">({interpretation.primary.name.pinyin})</span>
-                    </h2>
-                    <p className="hex-image-label">{interpretation.primary.image[lang]}</p>
-                    <div className="badge-stage">
-                      🦸‍♂️ {interpretation.primary.heroJourneyStage[lang]}
-                    </div>
-                    <div className="hex-description">
-                      <p>{interpretation.primary.summary[lang]}</p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Tab content 2: Mutating lines */}
-                {activeTab === "mutations" && (
-                  <div className="glass-panel hexagram-detail-card">
-                    <span className="hex-number">{text.mutatingLines}</span>
-                    <h2>{text.mutatingLines}</h2>
-                    <p style={{ color: "var(--text-secondary)", marginBottom: "1rem" }}>{text.mutatingIntro}</p>
-                    
-                    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                      {interpretation.movingLines.map(lineNum => (
-                        <div key={lineNum} className="mutating-explanation">
-                          <strong>{text.lineLabel(lineNum)} </strong>
-                          <span>
-                            {getLineInterpretation(interpretation.primary.number, lineNum, lang)}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Tab content 3: Future/Secondary Hexagram */}
-                {activeTab === "secondary" && interpretation.secondary && (
-                  <div className="glass-panel hexagram-detail-card">
-                    <span className="hex-number">{text.secondaryHex}</span>
-                    <h2 className="hex-title">
-                      {interpretation.secondary.number}. {interpretation.secondary.name[lang]}{" "}
-                      <span className="pinyin-title">({interpretation.secondary.name.pinyin})</span>
-                    </h2>
-                    <p className="hex-image-label">{interpretation.secondary.image[lang]}</p>
-                    <div className="badge-stage">
-                      🌟 {interpretation.secondary.heroJourneyStage[lang]}
-                    </div>
-                    <div className="hex-description">
-                      <p>{interpretation.secondary.summary[lang]}</p>
-                    </div>
-                  </div>
-                )}
+      {/* --- TAROT VIEW --- */}
+      {activeOracle === "tarot" && (
+        <main className="tarot-container">
+          {!tarotSpread ? (
+            <div className="tarot-intro glass-panel">
+              <div className="oracle-icon" style={{ fontSize: '4rem', marginBottom: '1rem' }}>🃏</div>
+              <p style={{ fontStyle: "italic", color: "var(--text-secondary)", marginBottom: '2rem', maxWidth: '600px', textAlign: 'center' }}>
+                {text.tarotIntroText}
+              </p>
+              <button 
+                className="btn-roll" 
+                onClick={handleDrawTarot} 
+                disabled={isDrawingTarot}
+              >
+                {isDrawingTarot ? text.drawingTarot : text.drawTarotBtn}
+              </button>
+            </div>
+          ) : (
+            <div className="tarot-spread-layout">
+              {/* Spread visualizer top area */}
+              <div className="spread-visualizer">
+                <div 
+                  className={`tarot-card-slot ${activeTarotTab === 'past' ? 'active-slot' : ''}`}
+                  onClick={() => setActiveTarotTab("past")}
+                >
+                  <img src={tarotSpread.past.image} alt={tarotSpread.past.name[lang]} className="tarot-img" />
+                  <div className="slot-label">{text.pastTitle}</div>
+                </div>
+                <div 
+                  className={`tarot-card-slot ${activeTarotTab === 'present' ? 'active-slot' : ''}`}
+                  onClick={() => setActiveTarotTab("present")}
+                >
+                  <img src={tarotSpread.present.image} alt={tarotSpread.present.name[lang]} className="tarot-img" />
+                  <div className="slot-label">{text.presentTitle}</div>
+                </div>
+                <div 
+                  className={`tarot-card-slot ${activeTarotTab === 'future' ? 'active-slot' : ''}`}
+                  onClick={() => setActiveTarotTab("future")}
+                >
+                  <img src={tarotSpread.future.image} alt={tarotSpread.future.name[lang]} className="tarot-img" />
+                  <div className="slot-label">{text.futureTitle}</div>
+                </div>
               </div>
-            )
+
+              {/* Spread interpretation bottom area */}
+              <div className="spread-interpretation glass-panel">
+                <div className="reading-panel">
+                  <div className="controls" style={{ marginBottom: "1.5rem", justifyContent: "center" }}>
+                    {(["past", "present", "future"] as const).map(tab => (
+                      <button 
+                        key={tab}
+                        className="btn-icon" 
+                        style={{ 
+                          borderColor: activeTarotTab === tab ? "var(--accent)" : "var(--panel-border)",
+                          background: activeTarotTab === tab ? "var(--accent-light)" : "var(--panel-bg)",
+                          color: activeTarotTab === tab ? "var(--accent)" : "var(--text-primary)",
+                          flex: 1
+                        }}
+                        onClick={() => setActiveTarotTab(tab)}
+                      >
+                        {tab === "past" ? "🌑 " + text.pastTitle : 
+                         tab === "present" ? "🌓 " + text.presentTitle : 
+                         "🌕 " + text.futureTitle}
+                      </button>
+                    ))}
+                  </div>
+                  
+                  {/* Detailed interpretation based on active tab */}
+                  {(() => {
+                    const activeCard = tarotSpread[activeTarotTab];
+                    return (
+                      <div className="hexagram-detail-card" style={{ padding: 0, background: 'transparent', border: 'none' }}>
+                        <span className="hex-number">{activeCard.numberRoman}</span>
+                        <h2 className="hex-title">
+                          {activeCard.name[lang]}
+                        </h2>
+                        <div className="badge-stage" style={{ marginBottom: '1rem' }}>
+                          🦸‍♂️ {activeCard.heroJourneyStage[lang]}
+                        </div>
+                        <div className="hex-description">
+                          {activeCard.summary && activeCard.summary[lang] && (
+                            <>
+                              <h3 style={{marginTop: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)'}}>{text.tarotSummary}</h3>
+                              <p>{activeCard.summary[lang]}</p>
+                            </>
+                          )}
+                          
+                          {activeCard.symbolism && activeCard.symbolism[lang] && (
+                            <>
+                              <h3 style={{marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--accent)'}}>{text.tarotSymbolism}</h3>
+                              <p>{activeCard.symbolism[lang]}</p>
+                            </>
+                          )}
+                          
+                          {activeCard.jungianAnalysis && activeCard.jungianAnalysis[lang] && (
+                            <>
+                              <h3 style={{marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--accent)'}}>{text.tarotJungian}</h3>
+                              <p>{activeCard.jungianAnalysis[lang]}</p>
+                            </>
+                          )}
+                          
+                          {activeCard.herosJourney && activeCard.herosJourney[lang] && (
+                            <>
+                              <h3 style={{marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--accent)'}}>{text.tarotHero}</h3>
+                              <p>{activeCard.herosJourney[lang]}</p>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+
+              <button className="btn-back" style={{ marginTop: '2rem' }} onClick={handleRestartTarot}>
+                {text.restartButton}
+              </button>
+            </div>
           )}
-        </section>
-      </main>
+        </main>
+      )}
     </div>
   );
 }

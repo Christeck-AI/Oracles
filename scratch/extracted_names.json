@@ -1,0 +1,322 @@
+{
+  "1": {
+    "es": "El Creador",
+    "en": "The Creative",
+    "pinyin": "Ch'ien"
+  },
+  "2": {
+    "es": "Lo Receptivo",
+    "en": "The Receptive",
+    "pinyin": "K'un"
+  },
+  "3": {
+    "es": "La Dificultad Inicial",
+    "en": "Difficulty at the Beginning",
+    "pinyin": "Chun"
+  },
+  "4": {
+    "es": "La Necedad Juvenil",
+    "en": "Youthful Folly",
+    "pinyin": "Mêng"
+  },
+  "5": {
+    "es": "La Espera o La Nutrición",
+    "en": "Waiting or Nourishment",
+    "pinyin": "Hsü"
+  },
+  "6": {
+    "es": "El Conflicto",
+    "en": "Conflict",
+    "pinyin": "Sung"
+  },
+  "7": {
+    "es": "El Ejército",
+    "en": "The Army",
+    "pinyin": "Shih"
+  },
+  "8": {
+    "es": "La Solidaridad o La Unión",
+    "en": "Holding Together or Union",
+    "pinyin": "Pi"
+  },
+  "9": {
+    "es": "La Fuerza Domesticadora de lo Pequeño",
+    "en": "The Taming Power of the Small",
+    "pinyin": "Hsiao Ch'u"
+  },
+  "10": {
+    "es": "El Porte o La Conducta",
+    "en": "Treading or Conduct",
+    "pinyin": "Lü"
+  },
+  "11": {
+    "es": "La Paz",
+    "en": "Peace",
+    "pinyin": "T'ai"
+  },
+  "12": {
+    "es": "El Estancamiento o La Obstrucción",
+    "en": "Standstill or Obstruction",
+    "pinyin": "P'i"
+  },
+  "13": {
+    "es": "La Comunidad con los Hombres",
+    "en": "Fellowship with Men",
+    "pinyin": "T'ung Jen"
+  },
+  "14": {
+    "es": "La Gran Posesión o El Dominio de lo Grande",
+    "en": "Great Possession or Possession in Great Measure",
+    "pinyin": "Ta Yu"
+  },
+  "15": {
+    "es": "La Modestia o La Humildad",
+    "en": "Modesty or Humility",
+    "pinyin": "Ch'ien"
+  },
+  "16": {
+    "es": "El Entusiasmo o La Ilusión",
+    "en": "Enthusiasm or Illusion",
+    "pinyin": "Yü"
+  },
+  "17": {
+    "es": "El Seguimiento",
+    "en": "Following",
+    "pinyin": "Sui"
+  },
+  "18": {
+    "es": "El Trabajo sobre lo Echado a Perder o La Reparación",
+    "en": "Work on what has been spoiled or Repair",
+    "pinyin": "Ku"
+  },
+  "19": {
+    "es": "El Acercamiento o La Aproximación",
+    "en": "Approach",
+    "pinyin": "Lin"
+  },
+  "20": {
+    "es": "La Contemplación o La Visión",
+    "en": "Contemplation or View",
+    "pinyin": "Kuan"
+  },
+  "21": {
+    "es": "La Mordedura Tajante",
+    "en": "Biting Through",
+    "pinyin": "Shih Ho"
+  },
+  "22": {
+    "es": "La Gracia o La Belleza",
+    "en": "Grace or Beauty",
+    "pinyin": "Pi"
+  },
+  "23": {
+    "es": "La Desintegración o La Ruina",
+    "en": "Splitting Apart or Ruin",
+    "pinyin": "Po"
+  },
+  "24": {
+    "es": "El Retorno o El Punto de Inflexión",
+    "en": "Return or The Turning Point",
+    "pinyin": "Fu"
+  },
+  "25": {
+    "es": "La Inocencia o Lo Inesperado",
+    "en": "Innocence or The Unexpected",
+    "pinyin": "Wu Wang"
+  },
+  "26": {
+    "es": "El Poder Domesticador de lo Grande",
+    "en": "The Taming Power of the Great",
+    "pinyin": "Ta Ch'u"
+  },
+  "27": {
+    "es": "Las Comisuras de los Labios o La Nutrición",
+    "en": "The Corners of the Mouth or Providing Nourishment",
+    "pinyin": "I"
+  },
+  "28": {
+    "es": "La Preponderancia de lo Grande o El Gran Exceso",
+    "en": "Preponderance of the Great or Great Exceeding",
+    "pinyin": "Ta Kuo"
+  },
+  "29": {
+    "es": "Lo Abismal o El Agua",
+    "en": "The Abysmal or Water",
+    "pinyin": "K'an"
+  },
+  "30": {
+    "es": "Lo Adherente o El Fuego",
+    "en": "The Clinging or Fire",
+    "pinyin": "Li"
+  },
+  "31": {
+    "es": "La Influencia o El Cortejo",
+    "en": "Influence or Wooing",
+    "pinyin": "Hsien"
+  },
+  "32": {
+    "es": "La Duración o La Constancia",
+    "en": "Duration or Constancy",
+    "pinyin": "Heng"
+  },
+  "33": {
+    "es": "La Retirada o El Retiro",
+    "en": "The Retreat",
+    "pinyin": "Tun"
+  },
+  "34": {
+    "es": "El Gran Poder o La Fuerza de lo Grande",
+    "en": "The Power of the Great",
+    "pinyin": "Ta Chuang"
+  },
+  "35": {
+    "es": "El Progreso o El Avance",
+    "en": "Progress",
+    "pinyin": "Chin"
+  },
+  "36": {
+    "es": "El Oscurecimiento de la Luz",
+    "en": "The Darkening of the Light",
+    "pinyin": "Ming I"
+  },
+  "37": {
+    "es": "La Familia o El Clan",
+    "en": "The Family or The Clan",
+    "pinyin": "Chia Jen"
+  },
+  "38": {
+    "es": "La Oposición o El Antagonismo",
+    "en": "Opposition",
+    "pinyin": "K'uei"
+  },
+  "39": {
+    "es": "El Obstáculo o El Impedimento",
+    "en": "Obstruction or Impediment",
+    "pinyin": "Chien"
+  },
+  "40": {
+    "es": "La Liberación",
+    "en": "Deliverance",
+    "pinyin": "Hsieh"
+  },
+  "41": {
+    "es": "La Merma o La Disminución",
+    "en": "Decrease or Diminishing",
+    "pinyin": "Sun"
+  },
+  "42": {
+    "es": "El Aumento o La Ganancia",
+    "en": "Increase or Gain",
+    "pinyin": "I"
+  },
+  "43": {
+    "es": "El Desbordamiento o La Resolución",
+    "en": "Breakthrough or Resoluteness",
+    "pinyin": "Kuai"
+  },
+  "44": {
+    "es": "El Ir al Encuentro o La Complacencia",
+    "en": "Coming to Meet or Complaisance",
+    "pinyin": "Kou"
+  },
+  "45": {
+    "es": "La Reunión o La Congregación",
+    "en": "Gathering Together or Congregation",
+    "pinyin": "Ts'ui"
+  },
+  "46": {
+    "es": "La Subida o El Ascenso",
+    "en": "Pushing Upward or Ascending",
+    "pinyin": "Sheng"
+  },
+  "47": {
+    "es": "La Desazón o El Agotamiento",
+    "en": "Oppression or Exhaustion",
+    "pinyin": "K'un"
+  },
+  "48": {
+    "es": "El Pozo",
+    "en": "The Well",
+    "pinyin": "Ching"
+  },
+  "49": {
+    "es": "La Revolución o La Muda",
+    "en": "Revolution or Molting",
+    "pinyin": "Ko"
+  },
+  "50": {
+    "es": "El Caldero",
+    "en": "The Caldron",
+    "pinyin": "Ting"
+  },
+  "51": {
+    "es": "La Conmoción o El Trueno",
+    "en": "The Arousing, Shock or Thunder",
+    "pinyin": "Chen"
+  },
+  "52": {
+    "es": "El Aquietamiento o La Montaña",
+    "en": "Keeping Still or Mountain",
+    "pinyin": "Ken"
+  },
+  "53": {
+    "es": "El Desarrollo o El Progreso Gradual",
+    "en": "Development or Gradual Progress",
+    "pinyin": "Chien"
+  },
+  "54": {
+    "es": "La Muchacha que se Casa",
+    "en": "The Marrying Maiden",
+    "pinyin": "Kuei Mei"
+  },
+  "55": {
+    "es": "La Abundancia o La Plenitud",
+    "en": "Abundance or Fullness",
+    "pinyin": "Feng"
+  },
+  "56": {
+    "es": "El Andariego o El Viajero",
+    "en": "The Wanderer or The Traveler",
+    "pinyin": "Lü"
+  },
+  "57": {
+    "es": "Lo Suave o La Penetración",
+    "en": "The Gentle or Penetration",
+    "pinyin": "Sun"
+  },
+  "58": {
+    "es": "Lo Sereno o La Alegría",
+    "en": "The Joyous or Lake",
+    "pinyin": "Tui"
+  },
+  "59": {
+    "es": "La Dispersión o La Disolución",
+    "en": "Dispersion or Dissolution",
+    "pinyin": "Huan"
+  },
+  "60": {
+    "es": "La Restricción o La Limitación",
+    "en": "Limitation or Articulation",
+    "pinyin": "Chieh"
+  },
+  "61": {
+    "es": "La Verdad Interior",
+    "en": "Inner Truth",
+    "pinyin": "Chung Fu"
+  },
+  "62": {
+    "es": "La Preponderancia de lo Pequeño",
+    "en": "Preponderance of the Small",
+    "pinyin": "Hsiao Kuo"
+  },
+  "63": {
+    "es": "Después de la Consumación",
+    "en": "After Completion",
+    "pinyin": "Chi Chi"
+  },
+  "64": {
+    "es": "Antes de la Consumación",
+    "en": "Before Completion",
+    "pinyin": "Wei Chi"
+  }
+}
