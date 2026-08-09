@@ -14,7 +14,8 @@ const UI_TEXT = {
     title: "Oráculos de Individuación",
     subtitle: "Sincronicidad y el Viaje del Héroe",
     menuIntro: "Selecciona el espejo en el que deseas mirar tu psique hoy:",
-    ichingTitle: "I Ching",
+    ichingTitle: "I-Ching. Oráculo de Individuación",
+    questionPlaceholder: "Escribe tu pregunta",
     ichingDesc: "El libro de las mutaciones. Revela las fuerzas dinámicas y los cambios en tu estado actual.",
     tarotTitle: "Tarot",
     tarotDesc: "El Viaje del Héroe. Explora los arquetipos psicológicos y el proceso de individuación en tu psique.",
@@ -54,7 +55,8 @@ const UI_TEXT = {
     title: "Oracles of Individuation",
     subtitle: "Synchronicity and the Hero's Journey",
     menuIntro: "Select the mirror in which you wish to look at your psyche today:",
-    ichingTitle: "I Ching",
+    ichingTitle: "I-Ching. Oracle of Individuation",
+    questionPlaceholder: "Write your question",
     ichingDesc: "The book of changes. Reveals the dynamic forces and shifts in your current state.",
     tarotTitle: "Tarot",
     tarotDesc: "The Hero's Journey. Explore the psychological archetypes and the individuation process within your psyche.",
@@ -110,6 +112,7 @@ function App() {
   const [activeOracle, setActiveOracle] = useState<"menu" | "iching" | "tarot">("menu");
   
   // I Ching Reading states
+  const [question, setQuestion] = useState("");
   const [lines, setLines] = useState<LineValue[]>([]);
   const [isRolling, setIsRolling] = useState(false);
   const [rollResult, setRollResult] = useState<CoinRollResult | null>(null);
@@ -132,6 +135,9 @@ function App() {
   // --- I Ching Handlers ---
   const handleRoll = () => {
     if (lines.length >= 6 || isRolling) return;
+    if (question.trim() !== "") {
+      setQuestion("");
+    }
     setIsRolling(true);
     setRollResult(null);
     setTimeout(() => {
@@ -143,6 +149,7 @@ function App() {
   };
 
   const handleRestartIChing = () => {
+    setQuestion("");
     setLines([]);
     setRollResult(null);
     setIsRolling(false);
@@ -225,7 +232,18 @@ function App() {
       {activeOracle === "iching" && (
         <main className="app-grid">
           <section className="glass-panel oracle-section">
-            <h2>{isIChingFinished ? text.restartButton : text.rollButton}</h2>
+            <h2 className="oracle-title">{text.ichingTitle}</h2>
+
+            <div className="question-input-container">
+              <input 
+                type="text" 
+                className="question-input" 
+                placeholder={text.questionPlaceholder}
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+              />
+            </div>
+
             <div className="coins-container">
               {rollResult ? (
                 rollResult.coins.map((coin, index) => (
