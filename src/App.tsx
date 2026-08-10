@@ -55,7 +55,7 @@ const UI_TEXT = {
     tarotHeroStage: "Etapa del Viaje:",
     tarotSummary: "Resumen Psicológico",
     tarotSymbolism: "Simbología (Rider-Waite)",
-    tarotJungian: "Análisis Junguiano",
+    tarotJungian: "Análisis Psicológico",
     tarotHero: "El Viaje del Héroe",
     zoomCardBtn: "Ver Carta en Tamaño Completo",
     zoomCardHint: "Haz clic para ver en detalle",
@@ -74,7 +74,7 @@ const UI_TEXT = {
     runesVerdandiTitle: "Verdandi (El Presente / Acción)",
     runesSkuldTitle: "Skuld (El Futuro / Devenir)",
     runesDeity: "Potencia Divina:",
-    runesJungian: "Arquetipo Junguiano",
+    runesJungian: "Arquetipo",
     runesHero: "Etapa del Viaje",
     runesMeaning: "Significado Psicológico"
   },
@@ -122,7 +122,7 @@ const UI_TEXT = {
     tarotHeroStage: "Journey Stage:",
     tarotSummary: "Psychological Summary",
     tarotSymbolism: "Symbolism (Rider-Waite)",
-    tarotJungian: "Jungian Analysis",
+    tarotJungian: "Psychological Analysis",
     tarotHero: "The Hero's Journey",
     zoomCardBtn: "View Full Size Card",
     zoomCardHint: "Click to view details",
@@ -141,7 +141,7 @@ const UI_TEXT = {
     runesVerdandiTitle: "Verdandi (The Present / Action)",
     runesSkuldTitle: "Skuld (The Future / Becoming)",
     runesDeity: "Divine Power:",
-    runesJungian: "Jungian Archetype",
+    runesJungian: "Archetype",
     runesHero: "Journey Stage",
     runesMeaning: "Psychological Meaning"
   }
@@ -196,35 +196,33 @@ function App() {
   const [lang, setLang] = useState<"es" | "en">("es");
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [activeOracle, setActiveOracle] = useState<"menu" | "iching" | "tarot" | "runes">(() => {
-    const params = new URLSearchParams(window.location.search);
-    const oracleParam = params.get('oraculo');
-    if (oracleParam === 'iching' || oracleParam === 'tarot' || oracleParam === 'runes') {
-      return oracleParam;
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (hash === 'iching' || hash === 'tarot' || hash === 'runes') {
+      return hash as "iching" | "tarot" | "runes";
     }
     return "menu";
   });
   
   // URL Routing Sync
   useEffect(() => {
-    const handlePopState = () => {
-      const params = new URLSearchParams(window.location.search);
-      const oracleParam = params.get('oraculo');
-      if (oracleParam === 'iching' || oracleParam === 'tarot' || oracleParam === 'runes') {
-        setActiveOracle(oracleParam);
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+      if (hash === 'iching' || hash === 'tarot' || hash === 'runes') {
+        setActiveOracle(hash as "iching" | "tarot" | "runes");
       } else {
         setActiveOracle("menu");
       }
     };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   const navigateTo = (oracle: "menu" | "iching" | "tarot" | "runes") => {
     setActiveOracle(oracle);
     if (oracle === "menu") {
-      window.history.pushState({}, '', window.location.pathname);
+      window.history.pushState(null, '', window.location.pathname + window.location.search);
     } else {
-      window.history.pushState({}, '', `${window.location.pathname}?oraculo=${oracle}`);
+      window.location.hash = oracle;
     }
   };
   
