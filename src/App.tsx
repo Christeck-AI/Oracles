@@ -195,7 +195,38 @@ function ProtectedImage({ src, alt, className = "", onClick, style }: ProtectedI
 function App() {
   const [lang, setLang] = useState<"es" | "en">("es");
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [activeOracle, setActiveOracle] = useState<"menu" | "iching" | "tarot" | "runes">("menu");
+  const [activeOracle, setActiveOracle] = useState<"menu" | "iching" | "tarot" | "runes">(() => {
+    const params = new URLSearchParams(window.location.search);
+    const oracleParam = params.get('oraculo');
+    if (oracleParam === 'iching' || oracleParam === 'tarot' || oracleParam === 'runes') {
+      return oracleParam;
+    }
+    return "menu";
+  });
+  
+  // URL Routing Sync
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const oracleParam = params.get('oraculo');
+      if (oracleParam === 'iching' || oracleParam === 'tarot' || oracleParam === 'runes') {
+        setActiveOracle(oracleParam);
+      } else {
+        setActiveOracle("menu");
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateTo = (oracle: "menu" | "iching" | "tarot" | "runes") => {
+    setActiveOracle(oracle);
+    if (oracle === "menu") {
+      window.history.pushState({}, '', window.location.pathname);
+    } else {
+      window.history.pushState({}, '', `${window.location.pathname}?oraculo=${oracle}`);
+    }
+  };
   
   // I Ching Reading states
   const [question, setQuestion] = useState("");
@@ -422,7 +453,7 @@ function App() {
   };
 
   const goBackToMenu = () => {
-    setActiveOracle("menu");
+    navigateTo("menu");
     // Optionally reset states when going back
     handleRestartIChing();
     handleRestartTarot();
@@ -437,6 +468,11 @@ function App() {
           <span className="subtitle">{text.subtitle}</span>
         </div>
         <div className="controls">
+          {activeOracle !== "menu" && (
+            <button className="btn-icon" onClick={goBackToMenu} style={{ fontWeight: 'bold' }}>
+              🏠 {lang === "es" ? "Menú" : "Menu"}
+            </button>
+          )}
           <button 
             className="btn-icon" 
             onClick={toggleBackgroundAudio} 
@@ -457,13 +493,6 @@ function App() {
           </button>
         </div>
       </header>
-
-      {/* BACK BUTTON */}
-      {activeOracle !== "menu" && (
-        <button className="btn-back" onClick={goBackToMenu}>
-          {text.backToMenu}
-        </button>
-      )}
 
       {/* --- MENU VIEW --- */}
       {activeOracle === "menu" && (
@@ -489,17 +518,17 @@ function App() {
           <h2 className="menu-intro">{text.menuIntro}</h2>
 
           <div className="oracle-cards">
-            <div className="oracle-selection-card glass-panel" onClick={() => setActiveOracle("tarot")}>
+            <div className="oracle-selection-card glass-panel" onClick={() => navigateTo("tarot")}>
               <div className="oracle-icon">🃏</div>
               <h2>{text.tarotTitle}</h2>
               <p>{text.tarotDesc}</p>
             </div>
-            <div className="oracle-selection-card glass-panel" onClick={() => setActiveOracle("iching")}>
+            <div className="oracle-selection-card glass-panel" onClick={() => navigateTo("iching")}>
               <div className="oracle-icon">☯</div>
               <h2>{text.ichingTitle}</h2>
               <p>{text.ichingDesc}</p>
             </div>
-            <div className="oracle-selection-card glass-panel" onClick={() => setActiveOracle("runes")}>
+            <div className="oracle-selection-card glass-panel" onClick={() => navigateTo("runes")}>
               <div className="oracle-icon">ᛉ</div>
               <h2>{text.runesTitle}</h2>
               <p>{text.runesDesc}</p>
