@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { 
   rollCoins, 
   interpretHexagram, 
@@ -24,8 +24,10 @@ const UI_TEXT = {
     themeDark: "Oscuro",
     langEs: "Español",
     langEn: "English",
-    bgMusicPlaying: "🎵 Música: Sacred Stillness (Activa)",
-    bgMusicPaused: "🎶 Música: Sacred Stillness",
+    soundOff: "Sonido: OFF",
+    soundOn: "Sonido: ON",
+    bgMusicPlaying: "🎵 Música: Activa",
+    bgMusicPaused: "🎶 Música: Pausada",
     
     // I Ching specific
     rollButton: "Lanzar Monedas",
@@ -75,8 +77,10 @@ const UI_TEXT = {
     themeDark: "Dark",
     langEs: "Español",
     langEn: "English",
-    bgMusicPlaying: "🎵 Music: Sacred Stillness (Playing)",
-    bgMusicPaused: "🎶 Music: Sacred Stillness",
+    soundOff: "Sound: OFF",
+    soundOn: "Sound: ON",
+    bgMusicPlaying: "🎵 Music: Playing",
+    bgMusicPaused: "🎶 Music: Paused",
     
     // I Ching specific
     rollButton: "Throw Coins",
@@ -182,25 +186,44 @@ function App() {
   const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    const audio = new Audio('./sacred_stillness.mp3');
-    audio.loop = true;
-    audio.volume = 0.45;
-    audioRef.current = audio;
+  // Map activeOracle view to track URL & title
+  const currentTrack = useMemo(() => {
+    switch (activeOracle) {
+      case "iching":
+        return { url: "./still_water.mp3", name: "Still Water" };
+      case "tarot":
+        return { url: "./sacred_horizon.mp3", name: "Sacred Horizon" };
+      case "menu":
+      default:
+        return { url: "./sacred_stillness.mp3", name: "Sacred Stillness" };
+    }
+  }, [activeOracle]);
 
-    return () => {
-      audio.pause();
-      audioRef.current = null;
-    };
-  }, []);
+  // Audio track switching effect
+  useEffect(() => {
+    if (!audioRef.current) {
+      const audio = new Audio(currentTrack.url);
+      audio.loop = true;
+      audio.volume = 0.45;
+      audioRef.current = audio;
+    } else {
+      const isCurrentlyPlaying = isAudioPlaying;
+      audioRef.current.pause();
+      audioRef.current.src = currentTrack.url;
+      audioRef.current.loop = true;
+      if (isCurrentlyPlaying) {
+        audioRef.current.play().catch(err => console.log("Track change error:", err));
+      }
+    }
+  }, [currentTrack]);
 
   const handleVideoEnded = () => {
     if (audioRef.current) {
+      audioRef.current.src = "./sacred_stillness.mp3";
+      audioRef.current.loop = true;
       audioRef.current.play().then(() => {
         setIsAudioPlaying(true);
-      }).catch(err => {
-        console.log("Audio autoplay after video ended:", err);
-      });
+      }).catch(err => console.log("Video ended audio error:", err));
     }
   };
 
@@ -212,9 +235,7 @@ function App() {
     } else {
       audioRef.current.play().then(() => {
         setIsAudioPlaying(true);
-      }).catch(err => {
-        console.log("Audio play error:", err);
-      });
+      }).catch(err => console.log("Audio play error:", err));
     }
   };
 
@@ -330,8 +351,17 @@ function App() {
           <span className="subtitle">{text.subtitle}</span>
         </div>
         <div className="controls">
-          <button className="btn-icon" onClick={toggleBackgroundAudio} title="Sacred Stillness">
-            {isAudioPlaying ? text.bgMusicPlaying : text.bgMusicPaused}
+          <button 
+            className="btn-icon" 
+            onClick={toggleBackgroundAudio} 
+            title={isAudioPlaying ? (lang === "es" ? "Desactivar Sonido" : "Turn Sound OFF") : (lang === "es" ? "Activar Sonido" : "Turn Sound ON")}
+            style={{
+              borderColor: isAudioPlaying ? "var(--accent)" : "var(--panel-border)",
+              background: isAudioPlaying ? "var(--accent-light)" : "var(--panel-bg)",
+              color: isAudioPlaying ? "var(--accent)" : "var(--text-primary)"
+            }}
+          >
+            {isAudioPlaying ? `🔊 🎵 ${currentTrack.name}` : `🔇 ${text.soundOff}`}
           </button>
           <button className="btn-icon" onClick={toggleLanguage}>
             🌐 {lang === "es" ? text.langEn : text.langEs}
