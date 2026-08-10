@@ -11,9 +11,9 @@ import './App.css';
 
 const UI_TEXT = {
   es: {
-    title: "Oráculos de Individuación",
+    title: "ORÁCULOS DE INDIVIDUACIÓN",
     subtitle: "Sincronicidad y el Viaje del Héroe",
-    menuIntro: "Selecciona el espejo en el que deseas mirar tu psique hoy:",
+    menuIntro: "SELECCIONA EL ESPEJO EN EL QUE DESEAS MIRAR TU PSIQUE HOY",
     ichingTitle: "I-Ching. Oráculo de Individuación",
     questionPlaceholder: "Escribe tu pregunta",
     ichingDesc: "El libro de las mutaciones. Revela las fuerzas dinámicas y los cambios en tu estado actual.",
@@ -52,9 +52,9 @@ const UI_TEXT = {
     tarotHero: "El Viaje del Héroe"
   },
   en: {
-    title: "Oracles of Individuation",
+    title: "ORACLES OF INDIVIDUATION",
     subtitle: "Synchronicity and the Hero's Journey",
-    menuIntro: "Select the mirror in which you wish to look at your psyche today:",
+    menuIntro: "SELECT THE MIRROR IN WHICH YOU WISH TO LOOK AT YOUR PSYCHE TODAY",
     ichingTitle: "I-Ching. Oracle of Individuation",
     questionPlaceholder: "Write your question",
     ichingDesc: "The book of changes. Reveals the dynamic forces and shifts in your current state.",
@@ -216,7 +216,26 @@ function App() {
       {/* --- MENU VIEW --- */}
       {activeOracle === "menu" && (
         <main className="menu-container">
-          <p className="menu-intro">{text.menuIntro}</p>
+          <div className="divider-line" />
+
+          <div className="video-container">
+            <video 
+              controls 
+              autoPlay 
+              muted 
+              loop 
+              playsInline 
+              className="intro-video"
+              src="./IntroToOracles.mp4"
+            >
+              Tu navegador no soporta la reproducción de video.
+            </video>
+          </div>
+
+          <div className="divider-line" />
+
+          <h2 className="menu-intro">{text.menuIntro}</h2>
+
           <div className="oracle-cards">
             <div className="oracle-selection-card glass-panel" onClick={() => setActiveOracle("tarot")}>
               <div className="oracle-icon">🃏</div>

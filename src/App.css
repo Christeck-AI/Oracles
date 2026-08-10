@@ -9,28 +9,39 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--panel-border);
 }
 
 .title-area {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title-area h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
 }
 
 .subtitle {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   font-weight: 300;
+  text-align: center;
 }
 
 .controls {
   display: flex;
   gap: 0.75rem;
+  margin-top: 1rem;
+  justify-content: center;
 }
 
 .btn-icon {
@@ -352,18 +363,52 @@
 }
 
 /* --- UI MENU SELECTION --- */
+.divider-line {
+  width: 100%;
+  max-width: 800px;
+  height: 1px;
+  background: var(--panel-border);
+  margin: 1.5rem auto;
+  opacity: 0.8;
+}
+
+.video-container {
+  width: 100%;
+  max-width: 760px;
+  margin: 1rem auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--panel-border);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+}
+
+.intro-video {
+  width: 100%;
+  max-height: 440px;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+
 .menu-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  width: 100%;
 }
 
 .menu-intro {
-  font-size: 1.2rem;
-  color: var(--text-secondary);
-  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 1.5rem 0 2.5rem 0;
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .oracle-cards {
