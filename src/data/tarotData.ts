@@ -21,7 +21,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 0,
     numberRoman: "0",
     name: { en: "The Fool", es: "El Loco" },
-    image: "/tarot/00_the_fool.png",
+    image: "./tarot/00_the_fool.png",
     heroJourneyStage: {
       en: "The Call to Adventure",
       es: "La Llamada a la Aventura"
@@ -47,7 +47,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 1,
     numberRoman: "I",
     name: { en: "The Magician", es: "El Mago" },
-    image: "/tarot/01_the_magician.png",
+    image: "./tarot/01_the_magician.png",
     heroJourneyStage: {
       en: "Ego Emergence & Willpower",
       es: "Surgimiento del Ego y Voluntad"
@@ -73,7 +73,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 2,
     numberRoman: "II",
     name: { en: "The High Priestess", es: "La Sacerdotisa" },
-    image: "/tarot/02_the_high_priestess.png",
+    image: "./tarot/02_the_high_priestess.png",
     heroJourneyStage: {
       en: "Encountering the Unconscious",
       es: "Encuentro con el Inconsciente"
@@ -99,7 +99,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 3,
     numberRoman: "III",
     name: { en: "The Empress", es: "La Emperatriz" },
-    image: "/tarot/03_the_empress.png",
+    image: "./tarot/03_the_empress.png",
     heroJourneyStage: {
       en: "The Great Mother",
       es: "La Gran Madre"
@@ -125,7 +125,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 4,
     numberRoman: "IV",
     name: { en: "The Emperor", es: "El Emperador" },
-    image: "/tarot/04_the_emperor.png",
+    image: "./tarot/04_the_emperor.png",
     heroJourneyStage: {
       en: "The Great Father",
       es: "El Gran Padre"
@@ -151,7 +151,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 5,
     numberRoman: "V",
     name: { en: "The Hierophant", es: "El Sumo Sacerdote" },
-    image: "/tarot/05_the_hierophant.png",
+    image: "./tarot/05_the_hierophant.png",
     heroJourneyStage: {
       en: "Social Conditioning",
       es: "Condicionamiento Social"
@@ -177,7 +177,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 6,
     numberRoman: "VI",
     name: { en: "The Lovers", es: "Los Enamorados" },
-    image: "/tarot/06_the_lovers.png",
+    image: "./tarot/06_the_lovers.png",
     heroJourneyStage: {
       en: "The Choice & Alignment",
       es: "La Elección y Alineación"
@@ -203,7 +203,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 7,
     numberRoman: "VII",
     name: { en: "The Chariot", es: "El Carro" },
-    image: "/tarot/07_the_chariot.png",
+    image: "./tarot/07_the_chariot.png",
     heroJourneyStage: {
       en: "Ego Mastery",
       es: "Dominio del Ego"
@@ -229,7 +229,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 8,
     numberRoman: "VIII",
     name: { en: "Strength", es: "La Fuerza" },
-    image: "/tarot/08_strength.png",
+    image: "./tarot/08_strength.png",
     heroJourneyStage: {
       en: "Taming the Inner Beast",
       es: "Domar a la Bestia Interior"
@@ -255,7 +255,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 9,
     numberRoman: "IX",
     name: { en: "The Hermit", es: "El Ermitaño" },
-    image: "/tarot/09_the_hermit.png",
+    image: "./tarot/09_the_hermit.png",
     heroJourneyStage: {
       en: "Withdrawal & Introspection",
       es: "Retiro e Introspección"
@@ -281,7 +281,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 10,
     numberRoman: "X",
     name: { en: "Wheel of Fortune", es: "La Rueda de la Fortuna" },
-    image: "/tarot/10_wheel_of_fortune.png",
+    image: "./tarot/10_wheel_of_fortune.png",
     heroJourneyStage: {
       en: "Cycles of Fate",
       es: "Ciclos del Destino"
@@ -307,7 +307,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 11,
     numberRoman: "XI",
     name: { en: "Justice", es: "La Justicia" },
-    image: "/tarot/11_justice.png",
+    image: "./tarot/11_justice.png",
     heroJourneyStage: {
       en: "Karmic Accountability",
       es: "Responsabilidad Kármica"
@@ -333,7 +333,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 12,
     numberRoman: "XII",
     name: { en: "The Hanged Man", es: "El Colgado" },
-    image: "/tarot/12_the_hanged_man.png",
+    image: "./tarot/12_the_hanged_man.png",
     heroJourneyStage: {
       en: "Surrender & New Perspective",
       es: "Rendición y Nueva Perspectiva"
@@ -359,7 +359,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 13,
     numberRoman: "XIII",
     name: { en: "Death", es: "La Muerte" },
-    image: "/tarot/13_death.png",
+    image: "./tarot/13_death.png",
     heroJourneyStage: {
       en: "Ego Death & Transformation",
       es: "Muerte del Ego y Transformación"
@@ -385,7 +385,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 14,
     numberRoman: "XIV",
     name: { en: "Temperance", es: "La Templanza" },
-    image: "/tarot/14_temperance.png",
+    image: "./tarot/14_temperance.png",
     heroJourneyStage: {
       en: "Psychological Alchemy",
       es: "Alquimia Psicológica"
@@ -411,7 +411,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 15,
     numberRoman: "XV",
     name: { en: "The Devil", es: "El Diablo" },
-    image: "/tarot/15_the_devil.png",
+    image: "./tarot/15_the_devil.png",
     heroJourneyStage: {
       en: "Confronting the Shadow",
       es: "Confrontación con la Sombra"
@@ -437,7 +437,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 16,
     numberRoman: "XVI",
     name: { en: "The Tower", es: "La Torre" },
-    image: "/tarot/16_the_tower.png",
+    image: "./tarot/16_the_tower.png",
     heroJourneyStage: {
       en: "Catarsis & Deconstruction",
       es: "Catarsis y Deconstrucción"
@@ -463,7 +463,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 17,
     numberRoman: "XVII",
     name: { en: "The Star", es: "La Estrella" },
-    image: "/tarot/17_the_star.png",
+    image: "./tarot/17_the_star.png",
     heroJourneyStage: {
       en: "Hope & Rejuvenation",
       es: "Esperanza y Rejuvenecimiento"
@@ -489,7 +489,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 18,
     numberRoman: "XVIII",
     name: { en: "The Moon", es: "La Luna" },
-    image: "/tarot/18_the_moon.png",
+    image: "./tarot/18_the_moon.png",
     heroJourneyStage: {
       en: "The Dark Night of the Soul",
       es: "La Noche Oscura del Alma"
@@ -515,7 +515,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 19,
     numberRoman: "XIX",
     name: { en: "The Sun", es: "El Sol" },
-    image: "/tarot/19_the_sun.png",
+    image: "./tarot/19_the_sun.png",
     heroJourneyStage: {
       en: "Master of Two Worlds",
       es: "Maestro de Dos Mundos"
@@ -541,7 +541,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 20,
     numberRoman: "XX",
     name: { en: "Judgement", es: "El Juicio" },
-    image: "/tarot/20_judgement.png",
+    image: "./tarot/20_judgement.png",
     heroJourneyStage: {
       en: "The Awakening",
       es: "El Despertar"
@@ -567,7 +567,7 @@ export const TAROT_DECK: TarotCardData[] = [
     id: 21,
     numberRoman: "XXI",
     name: { en: "The World", es: "El Mundo" },
-    image: "/tarot/21_the_world.png",
+    image: "./tarot/21_the_world.png",
     heroJourneyStage: {
       en: "Individuation Complete",
       es: "Individuación Completa"
