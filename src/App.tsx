@@ -182,8 +182,8 @@ function App() {
   const [maximizedCard, setMaximizedCard] = useState<TarotCardData | null>(null);
   const [zoomScale, setZoomScale] = useState<number>(1);
 
-  // Background Audio state & refs
-  const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(false);
+  // Background Audio state & refs (Sound is ON by default)
+  const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Map activeOracle view to track URL & title
@@ -199,7 +199,7 @@ function App() {
     }
   }, [activeOracle]);
 
-  // Audio track switching effect
+  // Audio track switching & auto-play effect
   useEffect(() => {
     if (!audioRef.current) {
       const audio = new Audio(currentTrack.url);
@@ -207,23 +207,34 @@ function App() {
       audio.volume = 0.45;
       audioRef.current = audio;
     } else {
-      const isCurrentlyPlaying = isAudioPlaying;
       audioRef.current.pause();
       audioRef.current.src = currentTrack.url;
       audioRef.current.loop = true;
-      if (isCurrentlyPlaying) {
-        audioRef.current.play().catch(err => console.log("Track change error:", err));
-      }
     }
-  }, [currentTrack]);
+
+    if (isAudioPlaying) {
+      audioRef.current.play().catch(() => {
+        // Autoplay policy prevented playback; start audio on first user gesture
+        const handleFirstInteraction = () => {
+          if (audioRef.current && isAudioPlaying) {
+            audioRef.current.play().catch(() => {});
+          }
+          window.removeEventListener('click', handleFirstInteraction);
+          window.removeEventListener('touchstart', handleFirstInteraction);
+          window.removeEventListener('keydown', handleFirstInteraction);
+        };
+        window.addEventListener('click', handleFirstInteraction);
+        window.addEventListener('touchstart', handleFirstInteraction);
+        window.addEventListener('keydown', handleFirstInteraction);
+      });
+    }
+  }, [currentTrack, isAudioPlaying]);
 
   const handleVideoEnded = () => {
-    if (audioRef.current) {
+    if (audioRef.current && isAudioPlaying) {
       audioRef.current.src = "./sacred_stillness.mp3";
       audioRef.current.loop = true;
-      audioRef.current.play().then(() => {
-        setIsAudioPlaying(true);
-      }).catch(err => console.log("Video ended audio error:", err));
+      audioRef.current.play().catch(err => console.log("Video ended audio error:", err));
     }
   };
 
@@ -233,9 +244,8 @@ function App() {
       audioRef.current.pause();
       setIsAudioPlaying(false);
     } else {
-      audioRef.current.play().then(() => {
-        setIsAudioPlaying(true);
-      }).catch(err => console.log("Audio play error:", err));
+      setIsAudioPlaying(true);
+      audioRef.current.play().catch(err => console.log("Audio play error:", err));
     }
   };
 
