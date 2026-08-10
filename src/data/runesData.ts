@@ -350,7 +350,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Perthro (The Mystery Cup / Synchronistic Fate)", es: "Perthro (La Copa del Misterio / Destino Sincrónico)" },
     aett: { en: "Heimdall's Aett", es: "Aett de Heimdall" },
     godOrPower: { en: "Frigg & The Well of Urd (Unmanifest Fate & Synchronicity)", es: "Frigg y el Pozo de Urd (Destino Inmanifiesto y Sincronicidad)" },
-    image: "./runes/14_perthro.png",
+    image: "./runes/14_perthro.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Perthro is the rune cup used to cast the lots—the mystery of unmanifest fate, secret knowledge, and synchronicities. It reminds you that life contains hidden variables beyond ego control. Surrender to mystery, trust hidden patterns, and play your hand with wisdom.",
@@ -375,7 +375,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Algiz (Elk Horn Shield / Divine Protection)", es: "Algiz (Escudo de Cuernos de Alce / Protección Divina)" },
     aett: { en: "Heimdall's Aett", es: "Aett de Heimdall" },
     godOrPower: { en: "Heimdall & The Valkyries (Vigilance & Spiritual Shield)", es: "Heimdall y las Valquirias (Vigilancia y Escudo Espiritual)" },
-    image: "./runes/15_algiz.png",
+    image: "./runes/15_algiz.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Algiz is the elk horns branching upward—the sanctuary shield of divine protection and heightened awareness. Linked to Heimdall's sharp senses, it warns you to stay alert and maintain clear boundaries. Ground yourself while staying open to spiritual guidance.",
@@ -400,7 +400,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Sowilo (The Sun / Solar Wholeness)", es: "Sowilo (El Sol / Totalidad Solar)" },
     aett: { en: "Heimdall's Aett", es: "Aett de Heimdall" },
     godOrPower: { en: "Sól & Baldr (Solar Victory & Higher Consciousness)", es: "Sól y Baldr (Victoria Solar y Conciencia Superior)" },
-    image: "./runes/16_sowilo.png",
+    image: "./runes/16_sowilo.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Sowilo is the blazing sun wheel—the radiant triumph of light, clarity, and solar wholeness. It marks the victory of conscious awareness over dark doubts. Sowilo urges you to stand in your authentic power, shine your truth, and embrace complete self-realization.",
@@ -427,7 +427,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Tiwaz (Tyr / Sacred Sacrifice & Honor)", es: "Tiwaz (Tyr / Sacrificio Sagrado y Honor)" },
     aett: { en: "Tyr's Aett", es: "Aett de Tyr" },
     godOrPower: { en: "Tyr (One-Handed God of Justice & Moral Sacrifice)", es: "Tyr (Dios Manco de la Justicia y Sacrificio Moral)" },
-    image: "./runes/17_tiwaz.png",
+    image: "./runes/17_tiwaz.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Tiwaz is the spear arrow of Tyr, the one-handed god who sacrificed his arm in Fenrir's jaws to bind chaos. It represents moral integrity, justice, and willingness to sacrifice ego comfort for a higher ethical cause. Tiwaz asks: What ego attachment must you sacrifice to honor your highest principles?",
@@ -452,7 +452,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Berkano (The Birch / Nurturing Rebirth)", es: "Berkano (El Abedul / Renacimiento Nutricio)" },
     aett: { en: "Tyr's Aett", es: "Aett de Tyr" },
     godOrPower: { en: "Frigg & Idunn (Birch Goddess & Regeneration)", es: "Frigg e Idunn (Diosa del Abedul y Regeneración)" },
-    image: "./runes/18_berkano.png",
+    image: "./runes/18_berkano.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Berkano is the Birch tree—the gentle sanctuary of rebirth, motherhood, and nurturing growth. It represents the fertility of new ideas and healing of old wounds. Berkano invites you to cultivate patience, nurture your emerging projects, and allow healing warmth to restore your soul.",
@@ -477,7 +477,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Ehwaz (The Sacred Steed / Dual Harmony)", es: "Ehwaz (El Corcel Sagrado / Armonía Dual)" },
     aett: { en: "Tyr's Aett", es: "Aett de Tyr" },
     godOrPower: { en: "Freyr & Sleipnir (Sacred Horse & Rider Trust)", es: "Freyr y Sleipnir (Confianza entre Caballo y Jinete)" },
-    image: "./runes/19_ehwaz.png",
+    image: "./runes/19_ehwaz.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Ehwaz is the sacred horse and rider moving in seamless synergy. It represents mutual trust, partnership, and dynamic momentum. Neither horse nor rider dominates; progress requires equal cooperation. Ehwaz asks: Are you working in harmonious partnership with others and with your own unconscious instincts?",
@@ -502,7 +502,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Mannaz (Humanity / The Integrated Self)", es: "Mannaz (La Humanidad / El Sí-Mismo Integrado)" },
     aett: { en: "Tyr's Aett", es: "Aett de Tyr" },
     godOrPower: { en: "Heimdall (Ríg) & Máni (Integrated Human Mind)", es: "Heimdall (Ríg) y Máni (Mente Humana Integrada)" },
-    image: "./runes/20_mannaz.png",
+    image: "./runes/20_mannaz.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Mannaz is the rune of humanity, social consciousness, and the integrated mind. It highlights our shared human condition, intellect, and memory. Mannaz challenges you to view yourself clearly in the mirror of community: Are you balancing your individual identity with your shared human destiny?",
@@ -527,7 +527,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Laguz (The Ocean Waters / Unconscious Flow)", es: "Laguz (Las Aguas del Océano / Flujo Inconsciente)" },
     aett: { en: "Tyr's Aett", es: "Aett de Tyr" },
     godOrPower: { en: "Njörðr & Rán Waters (Intuition & Primal Depth)", es: "Njörðr y las Aguas de Rán (Intuición y Profundidad Primordial)" },
-    image: "./runes/21_laguz.png",
+    image: "./runes/21_laguz.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Laguz is the flowing ocean water—the realm of dreams, deep intuition, and the unconscious mind. Like water, life requires fluidity and adaptability. Laguz calls you to dive into your emotional depths, trust your intuitive stream, and yield to organic flow rather than rigid control.",
@@ -552,7 +552,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Ingwaz (The Seed / Gestation & Core Strength)", es: "Ingwaz (La Semilla / Gestación y Fuerza Central)" },
     aett: { en: "Tyr's Aett", es: "Aett de Tyr" },
     godOrPower: { en: "Ing-Freyr (Sacred Earth Seed & Internalized Power)", es: "Ing-Freyr (Semilla Sagrada de la Tierra y Poder Internalizado)" },
-    image: "./runes/22_ingwaz.png",
+    image: "./runes/22_ingwaz.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Ingwaz is the closed diamond seed—the concentrated, internal storage of potential energy before emergence. It signifies a necessary phase of quiet gestation and internal focus. Rest in the dark fertile soil of your soul; energy is accumulating for an explosive breakthrough.",
@@ -577,7 +577,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Dagaz (Daybreak / Cosmic Illumination)", es: "Dagaz (El Amanecer / Iluminación Cósmica)" },
     aett: { en: "Tyr's Aett", es: "Aett de Tyr" },
     godOrPower: { en: "Baldr & Dagr (Daybreak & Paradigm Shift)", es: "Baldr y Dagr (Amanecer y Cambio de Paradigma)" },
-    image: "./runes/23_dagaz.png",
+    image: "./runes/23_dagaz.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Dagaz is the sudden breakthrough of dawn—a radical transformation of consciousness where polarities dissolve into divine light. Night turns into day; doubts vanish. Dagaz heralds a major paradigm shift, clarity, and awakening. Step boldly into the new light.",
@@ -602,7 +602,7 @@ export const RUNES_DECK: RuneData[] = [
     name: { en: "Othala (Ancestral Heritage / Sacred Sanctuary)", es: "Othala (Patrimonio Ancestral / Santuario Sagrado)" },
     aett: { en: "Tyr's Aett", es: "Aett de Tyr" },
     godOrPower: { en: "Odin & The Ancestors (Enclosed Heritage & Spiritual Home)", es: "Odín y los Ancestros (Patrimonio Encerrado y Hogar Espiritual)" },
-    image: "./runes/24_othala.png",
+    image: "./runes/24_othala.svg",
     nornStage: { en: "Urd / Verdandi / Skuld", es: "Urd / Verdandi / Skuld" },
     summary: {
       en: "Othala is the final rune of the Elder Futhark—the enclosed homestead, spiritual lineage, and ancestral wisdom. It represents your true spiritual home and integrated heritage. Separate gold from dross in your lineage: Keep what honors your soul and release inherited burdens. You are the sacred sanctuary of your ancestors.",
