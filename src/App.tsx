@@ -53,7 +53,11 @@ const UI_TEXT = {
     zoomCardBtn: "Ver Carta en Tamaño Completo",
     zoomCardHint: "Haz clic para ver en detalle",
     closeModal: "Cerrar",
-    closeModalHint: "(Haz clic fuera o presiona ESC para cerrar)"
+    closeModalHint: "(Haz clic fuera o presiona ESC para cerrar)",
+    zoomIn: "Acercar (+)",
+    zoomOut: "Alejar (-)",
+    zoomReset: "Restablecer",
+    zoomHint: "Usa la rueda del mouse o los botones para acercar/alejar y desplazarte por la carta."
   },
   en: {
     title: "ORACLES OF INDIVIDUATION",
@@ -98,7 +102,11 @@ const UI_TEXT = {
     zoomCardBtn: "View Full Size Card",
     zoomCardHint: "Click to view details",
     closeModal: "Close",
-    closeModalHint: "(Click outside or press ESC to close)"
+    closeModalHint: "(Click outside or press ESC to close)",
+    zoomIn: "Zoom In (+)",
+    zoomOut: "Zoom Out (-)",
+    zoomReset: "Reset",
+    zoomHint: "Use mouse wheel scroll or control buttons to zoom in/out and pan through the card."
   }
 };
 
@@ -138,6 +146,7 @@ function ProtectedImage({ src, alt, className = "", onClick, style }: ProtectedI
       <img 
         src={src} 
         alt={alt} 
+        className="protected-img-content"
         draggable={false} 
         onContextMenu={(e) => e.preventDefault()}
         onDragStart={(e) => e.preventDefault()}
@@ -163,6 +172,16 @@ function App() {
   const [tarotSpread, setTarotSpread] = useState<SpreadDrawResult | null>(null);
   const [activeTarotTab, setActiveTarotTab] = useState<"past" | "present" | "future">("past");
   const [maximizedCard, setMaximizedCard] = useState<TarotCardData | null>(null);
+  const [zoomScale, setZoomScale] = useState<number>(1);
+
+  const handleZoomIn = () => setZoomScale(prev => Math.min(prev + 0.25, 3.5));
+  const handleZoomOut = () => setZoomScale(prev => Math.max(prev - 0.25, 1));
+  const handleZoomReset = () => setZoomScale(1);
+
+  const openCardModal = (card: TarotCardData) => {
+    setMaximizedCard(card);
+    setZoomScale(1);
+  };
 
   // Sync HTML theme attribute
   useEffect(() => {
@@ -544,7 +563,7 @@ function App() {
                       className={`tarot-card-slot ${isActive ? 'active-slot' : ''}`}
                       onClick={() => {
                         setActiveTarotTab(position);
-                        setMaximizedCard(card);
+                        openCardModal(card);
                       }}
                       title={text.zoomCardHint}
                     >
@@ -596,7 +615,7 @@ function App() {
                           <button 
                             className="btn-icon" 
                             style={{ fontSize: '0.8rem', padding: '0.4rem 0.8rem' }}
-                            onClick={() => setMaximizedCard(activeCard)}
+                            onClick={() => openCardModal(activeCard)}
                           >
                             🔍 {text.zoomCardBtn}
                           </button>
@@ -650,25 +669,59 @@ function App() {
       {/* --- TAROT CARD MAXIMIZE MODAL --- */}
       {maximizedCard && (
         <div className="modal-backdrop" onClick={() => setMaximizedCard(null)}>
-          <div className="modal-card glass-panel" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={() => setMaximizedCard(null)} title={text.closeModal}>
-              ✕
-            </button>
-            <div className="modal-img-container">
-              <ProtectedImage 
-                src={maximizedCard.image} 
-                alt={maximizedCard.name[lang]} 
-                className="maximized-tarot-img"
-              />
-            </div>
-            <div className="modal-card-info">
-              <span className="hex-number">{maximizedCard.numberRoman}</span>
-              <h2 className="hex-title" style={{ margin: '0.25rem 0' }}>{maximizedCard.name[lang]}</h2>
-              <div className="badge-stage" style={{ marginTop: '0.5rem' }}>
-                🦸‍♂️ {maximizedCard.heroJourneyStage[lang]}
+          <div className="modal-card-full glass-panel" onClick={(e) => e.stopPropagation()}>
+            <header className="modal-toolbar">
+              <div className="modal-title-group">
+                <span className="hex-number">{maximizedCard.numberRoman}</span>
+                <h2>{maximizedCard.name[lang]}</h2>
+                <span className="badge-stage" style={{ margin: 0 }}>🦸‍♂️ {maximizedCard.heroJourneyStage[lang]}</span>
               </div>
-              <p className="modal-hint">{text.closeModalHint}</p>
+              <div className="modal-actions">
+                <button className="zoom-btn-control" onClick={handleZoomIn} title="Zoom In">
+                  {text.zoomIn}
+                </button>
+                <button className="zoom-btn-control" onClick={handleZoomOut} title="Zoom Out">
+                  {text.zoomOut}
+                </button>
+                <button className="zoom-btn-control" onClick={handleZoomReset} title="Reset">
+                  {text.zoomReset} ({Math.round(zoomScale * 100)}%)
+                </button>
+                <button className="zoom-btn-control close" onClick={() => setMaximizedCard(null)} title="Close">
+                  {text.closeModal}
+                </button>
+              </div>
+            </header>
+
+            <div 
+              className="modal-viewport"
+              onWheel={(e) => {
+                e.stopPropagation();
+                if (e.deltaY < 0) {
+                  handleZoomIn();
+                } else {
+                  handleZoomOut();
+                }
+              }}
+            >
+              <div 
+                className="maximized-image-wrapper"
+                style={{ 
+                  transform: `scale(${zoomScale})`, 
+                  transformOrigin: 'center center' 
+                }}
+              >
+                <ProtectedImage 
+                  src={maximizedCard.image} 
+                  alt={maximizedCard.name[lang]} 
+                  className="maximized-tarot-img"
+                />
+              </div>
             </div>
+
+            <footer className="modal-footer">
+              <span>💡 {text.zoomHint}</span>
+              <span>ESC {text.closeModalHint}</span>
+            </footer>
           </div>
         </div>
       )}
