@@ -977,6 +977,13 @@ function App() {
                               <p>{activeRune.jungianAnalysis[lang]}</p>
                             </>
                           )}
+                          
+                          {activeRune.herosJourney && activeRune.herosJourney[lang] && (
+                            <>
+                              <h3 style={{marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--accent)'}}>{text.runesHero}</h3>
+                              <p>{activeRune.herosJourney[lang]}</p>
+                            </>
+                          )}
                         </div>
                       </div>
                     );
