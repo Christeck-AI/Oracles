@@ -184,6 +184,7 @@ function App() {
 
   // Background Audio state & refs (Sound is ON by default)
   const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Map activeOracle view to track URL & title
@@ -212,6 +213,11 @@ function App() {
       audioRef.current.loop = true;
     }
 
+    // Do not overlap background music while the intro video is playing on the menu
+    if (activeOracle === "menu" && isVideoPlaying) {
+      return;
+    }
+
     if (isAudioPlaying) {
       audioRef.current.play().catch(() => {
         // Autoplay policy prevented playback; start audio on first user gesture
@@ -228,9 +234,17 @@ function App() {
         window.addEventListener('keydown', handleFirstInteraction);
       });
     }
-  }, [currentTrack, isAudioPlaying]);
+  }, [currentTrack, isAudioPlaying, activeOracle, isVideoPlaying]);
+
+  const handleVideoPlay = () => {
+    setIsVideoPlaying(true);
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+  };
 
   const handleVideoEnded = () => {
+    setIsVideoPlaying(false);
     if (audioRef.current && isAudioPlaying) {
       audioRef.current.src = "./sacred_stillness.mp3";
       audioRef.current.loop = true;
@@ -245,7 +259,9 @@ function App() {
       setIsAudioPlaying(false);
     } else {
       setIsAudioPlaying(true);
-      audioRef.current.play().catch(err => console.log("Audio play error:", err));
+      if (!(activeOracle === "menu" && isVideoPlaying)) {
+        audioRef.current.play().catch(err => console.log("Audio play error:", err));
+      }
     }
   };
 
@@ -397,9 +413,11 @@ function App() {
           <div className="video-container">
             <video 
               controls 
+              autoPlay 
               playsInline 
               className="intro-video"
               src="./IntroToOracles.mp4"
+              onPlay={handleVideoPlay}
               onEnded={handleVideoEnded}
             >
               Tu navegador no soporta la reproducción de video.
