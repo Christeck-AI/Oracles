@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { 
   rollCoins, 
   interpretHexagram, 
@@ -24,6 +24,8 @@ const UI_TEXT = {
     themeDark: "Oscuro",
     langEs: "Español",
     langEn: "English",
+    bgMusicPlaying: "🎵 Música: Sacred Stillness (Activa)",
+    bgMusicPaused: "🎶 Música: Sacred Stillness",
     
     // I Ching specific
     rollButton: "Lanzar Monedas",
@@ -73,6 +75,8 @@ const UI_TEXT = {
     themeDark: "Dark",
     langEs: "Español",
     langEn: "English",
+    bgMusicPlaying: "🎵 Music: Sacred Stillness (Playing)",
+    bgMusicPaused: "🎶 Music: Sacred Stillness",
     
     // I Ching specific
     rollButton: "Throw Coins",
@@ -173,6 +177,46 @@ function App() {
   const [activeTarotTab, setActiveTarotTab] = useState<"past" | "present" | "future">("past");
   const [maximizedCard, setMaximizedCard] = useState<TarotCardData | null>(null);
   const [zoomScale, setZoomScale] = useState<number>(1);
+
+  // Background Audio state & refs
+  const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audio = new Audio('./sacred_stillness.mp3');
+    audio.loop = true;
+    audio.volume = 0.45;
+    audioRef.current = audio;
+
+    return () => {
+      audio.pause();
+      audioRef.current = null;
+    };
+  }, []);
+
+  const handleVideoEnded = () => {
+    if (audioRef.current) {
+      audioRef.current.play().then(() => {
+        setIsAudioPlaying(true);
+      }).catch(err => {
+        console.log("Audio autoplay after video ended:", err);
+      });
+    }
+  };
+
+  const toggleBackgroundAudio = () => {
+    if (!audioRef.current) return;
+    if (isAudioPlaying) {
+      audioRef.current.pause();
+      setIsAudioPlaying(false);
+    } else {
+      audioRef.current.play().then(() => {
+        setIsAudioPlaying(true);
+      }).catch(err => {
+        console.log("Audio play error:", err);
+      });
+    }
+  };
 
   const handleZoomIn = () => setZoomScale(prev => Math.min(prev + 0.25, 3.5));
   const handleZoomOut = () => setZoomScale(prev => Math.max(prev - 0.25, 1));
@@ -286,6 +330,9 @@ function App() {
           <span className="subtitle">{text.subtitle}</span>
         </div>
         <div className="controls">
+          <button className="btn-icon" onClick={toggleBackgroundAudio} title="Sacred Stillness">
+            {isAudioPlaying ? text.bgMusicPlaying : text.bgMusicPaused}
+          </button>
           <button className="btn-icon" onClick={toggleLanguage}>
             🌐 {lang === "es" ? text.langEn : text.langEs}
           </button>
@@ -310,12 +357,10 @@ function App() {
           <div className="video-container">
             <video 
               controls 
-              autoPlay 
-              muted 
-              loop 
               playsInline 
               className="intro-video"
               src="./IntroToOracles.mp4"
+              onEnded={handleVideoEnded}
             >
               Tu navegador no soporta la reproducción de video.
             </video>
