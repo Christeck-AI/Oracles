@@ -7,6 +7,7 @@ import {
   HexagramData 
 } from './ichingEngine';
 import { drawTarotSpread, SpreadDrawResult, TarotCardData } from './tarotEngine';
+import { drawRunesSpread, RunesDrawResult, RuneData, NornPosition } from './runesEngine';
 import './App.css';
 
 const UI_TEXT = {
@@ -19,6 +20,8 @@ const UI_TEXT = {
     ichingDesc: "El libro de las mutaciones. Revela las fuerzas dinámicas y los cambios en tu estado actual.",
     tarotTitle: "Tarot. Oráculo de Divinación",
     tarotDesc: "El Viaje del Héroe. Explora los arquetipos psicológicos y el proceso de individuación en tu psique.",
+    runesTitle: "Runas. Oráculo de las Norns",
+    runesDesc: "El Futhark Antiguo. Extrae las fuerzas primordiales y potencias divinas de tu presente.",
     backToMenu: "← Volver al Menú",
     themeLight: "Claro",
     themeDark: "Oscuro",
@@ -61,7 +64,19 @@ const UI_TEXT = {
     zoomIn: "Acercar (+)",
     zoomOut: "Alejar (-)",
     zoomReset: "Restablecer",
-    zoomHint: "Usa la rueda del mouse o los botones para acercar/alejar y desplazarte por la carta."
+    zoomHint: "Usa la rueda del mouse o los botones para acercar/alejar y desplazarte por la carta.",
+    
+    // Runes specific
+    drawRunesBtn: "Consultar a las Norns (3 Runas)",
+    drawingRunes: "Grabando la piedra...",
+    runesIntroText: "Las Runas del Futhark Antiguo son fuerzas primordiales. Las tres Norns (Urd, Verdandi y Skuld) tejen la red de causalidad cósmica (Wyrd). Concéntrate en tu dilema actual y extrae 3 runas para revelar las fuerzas en tu Pasado Inconsciente, la Acción de tu Presente, y la Potencia de tu Devenir.",
+    runesUrdTitle: "Urd (El Pasado / Origen)",
+    runesVerdandiTitle: "Verdandi (El Presente / Acción)",
+    runesSkuldTitle: "Skuld (El Futuro / Devenir)",
+    runesDeity: "Potencia Divina:",
+    runesJungian: "Arquetipo Junguiano",
+    runesHero: "Etapa del Viaje",
+    runesMeaning: "Significado Psicológico"
   },
   en: {
     title: "ORACLES OF INDIVIDUATION",
@@ -72,6 +87,8 @@ const UI_TEXT = {
     ichingDesc: "The book of changes. Reveals the dynamic forces and shifts in your current state.",
     tarotTitle: "Tarot. Oracle of Divination",
     tarotDesc: "The Hero's Journey. Explore the psychological archetypes and the individuation process within your psyche.",
+    runesTitle: "Runes. Oracle of the Norns",
+    runesDesc: "The Elder Futhark. Draw the primordial forces and divine potencies of your present.",
     backToMenu: "← Back to Menu",
     themeLight: "Light",
     themeDark: "Dark",
@@ -114,7 +131,19 @@ const UI_TEXT = {
     zoomIn: "Zoom In (+)",
     zoomOut: "Zoom Out (-)",
     zoomReset: "Reset",
-    zoomHint: "Use mouse wheel scroll or control buttons to zoom in/out and pan through the card."
+    zoomHint: "Use mouse wheel scroll or control buttons to zoom in/out and pan through the card.",
+    
+    // Runes specific
+    drawRunesBtn: "Consult the Norns (3 Runes)",
+    drawingRunes: "Carving the stone...",
+    runesIntroText: "The Elder Futhark Runes are primordial forces. The three Norns (Urd, Verdandi, and Skuld) weave the web of cosmic causality (Wyrd). Focus on your current dilemma and draw 3 runes to reveal the forces in your Unconscious Past, Present Action, and Emerging Destiny.",
+    runesUrdTitle: "Urd (The Past / Root)",
+    runesVerdandiTitle: "Verdandi (The Present / Action)",
+    runesSkuldTitle: "Skuld (The Future / Becoming)",
+    runesDeity: "Divine Power:",
+    runesJungian: "Jungian Archetype",
+    runesHero: "Journey Stage",
+    runesMeaning: "Psychological Meaning"
   }
 };
 
@@ -166,7 +195,7 @@ function ProtectedImage({ src, alt, className = "", onClick, style }: ProtectedI
 function App() {
   const [lang, setLang] = useState<"es" | "en">("es");
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [activeOracle, setActiveOracle] = useState<"menu" | "iching" | "tarot">("menu");
+  const [activeOracle, setActiveOracle] = useState<"menu" | "iching" | "tarot" | "runes">("menu");
   
   // I Ching Reading states
   const [question, setQuestion] = useState("");
@@ -179,7 +208,13 @@ function App() {
   const [isDrawingTarot, setIsDrawingTarot] = useState(false);
   const [tarotSpread, setTarotSpread] = useState<SpreadDrawResult | null>(null);
   const [activeTarotTab, setActiveTarotTab] = useState<"past" | "present" | "future">("past");
-  const [maximizedCard, setMaximizedCard] = useState<TarotCardData | null>(null);
+  
+  // Runes Reading states
+  const [isDrawingRunes, setIsDrawingRunes] = useState(false);
+  const [runesSpread, setRunesSpread] = useState<RunesDrawResult | null>(null);
+  const [activeRuneTab, setActiveRuneTab] = useState<NornPosition>("urd");
+  
+  const [maximizedCard, setMaximizedCard] = useState<TarotCardData | RuneData | null>(null);
   const [zoomScale, setZoomScale] = useState<number>(1);
 
   // Background Audio state & refs (Sound is ON by default)
@@ -194,6 +229,8 @@ function App() {
         return { url: "./still_water.mp3", name: "Still Water" };
       case "tarot":
         return { url: "./sacred_horizon.mp3", name: "Sacred Horizon" };
+      case "runes":
+        return { url: "./sacred_stillness.mp3", name: "Sacred Stillness" };
       case "menu":
       default:
         return { url: "./sacred_stillness.mp3", name: "Sacred Stillness" };
@@ -269,7 +306,7 @@ function App() {
   const handleZoomOut = () => setZoomScale(prev => Math.max(prev - 0.25, 1));
   const handleZoomReset = () => setZoomScale(1);
 
-  const openCardModal = (card: TarotCardData) => {
+  const openCardModal = (card: TarotCardData | RuneData) => {
     setMaximizedCard(card);
     setZoomScale(1);
   };
@@ -362,11 +399,34 @@ function App() {
     setIsDrawingTarot(false);
   };
 
+  // --- Runes Handlers ---
+  const handleDrawRunes = () => {
+    if (isDrawingRunes) return;
+    if (question.trim() !== "") {
+      setQuestion("");
+    }
+    setIsDrawingRunes(true);
+    setRunesSpread(null);
+    
+    setTimeout(() => {
+      setRunesSpread(drawRunesSpread());
+      setIsDrawingRunes(false);
+      setActiveRuneTab("urd");
+    }, 1500);
+  };
+
+  const handleRestartRunes = () => {
+    setQuestion("");
+    setRunesSpread(null);
+    setIsDrawingRunes(false);
+  };
+
   const goBackToMenu = () => {
     setActiveOracle("menu");
     // Optionally reset states when going back
     handleRestartIChing();
     handleRestartTarot();
+    handleRestartRunes();
   };
 
   return (
@@ -438,6 +498,11 @@ function App() {
               <div className="oracle-icon">☯</div>
               <h2>{text.ichingTitle}</h2>
               <p>{text.ichingDesc}</p>
+            </div>
+            <div className="oracle-selection-card glass-panel" onClick={() => setActiveOracle("runes")}>
+              <div className="oracle-icon">ᛉ</div>
+              <h2>{text.runesTitle}</h2>
+              <p>{text.runesDesc}</p>
             </div>
           </div>
         </main>
@@ -769,15 +834,148 @@ function App() {
         </main>
       )}
 
-      {/* --- TAROT CARD MAXIMIZE MODAL --- */}
+      {/* --- RUNES VIEW --- */}
+      {activeOracle === "runes" && (
+        <main className="tarot-container">
+          {!runesSpread ? (
+            <div className="tarot-intro glass-panel">
+              <h2 className="oracle-title" style={{ marginBottom: '1rem' }}>{text.runesTitle}</h2>
+              <div className="question-input-container" style={{ width: '100%', maxWidth: '400px', marginBottom: '1rem' }}>
+                <input 
+                  type="text" 
+                  className="question-input" 
+                  placeholder={text.questionPlaceholder}
+                  value={question}
+                  onChange={(e) => setQuestion(e.target.value)}
+                />
+              </div>
+              <div className="oracle-icon" style={{ fontSize: '4rem', marginBottom: '1rem' }}>ᛉ</div>
+              <p style={{ fontStyle: "italic", color: "var(--text-secondary)", marginBottom: '2rem', maxWidth: '600px', textAlign: 'center' }}>
+                {text.runesIntroText}
+              </p>
+              <button 
+                className="btn-roll" 
+                onClick={handleDrawRunes} 
+                disabled={isDrawingRunes}
+              >
+                {isDrawingRunes ? text.drawingRunes : text.drawRunesBtn}
+              </button>
+            </div>
+          ) : (
+            <div className="tarot-spread-layout">
+              <div className="spread-visualizer">
+                {(["urd", "verdandi", "skuld"] as const).map(position => {
+                  const card = runesSpread[position];
+                  const title = position === 'urd' ? text.runesUrdTitle : position === 'verdandi' ? text.runesVerdandiTitle : text.runesSkuldTitle;
+                  const isActive = activeRuneTab === position;
+                  return (
+                    <div 
+                      key={position}
+                      className={`tarot-card-slot ${isActive ? 'active-slot' : ''}`}
+                      onClick={() => {
+                        setActiveRuneTab(position);
+                        openCardModal(card);
+                      }}
+                      title={text.zoomCardHint}
+                    >
+                      <div className="slot-img-wrapper" style={{aspectRatio: '1/1'}}>
+                        <ProtectedImage src={card.image} alt={card.name[lang]} className="tarot-img" style={{objectFit: 'cover'}} />
+                        <div className="zoom-badge">
+                          🔍 {lang === "es" ? "Ampliar" : "Expand"}
+                        </div>
+                      </div>
+                      <div className="slot-label">{title}</div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="spread-interpretation glass-panel">
+                <div className="reading-panel">
+                  <div className="controls" style={{ marginBottom: "1.5rem", justifyContent: "center", flexWrap: "wrap" }}>
+                    {(["urd", "verdandi", "skuld"] as const).map(tab => (
+                      <button 
+                        key={tab}
+                        className="btn-icon" 
+                        style={{ 
+                          borderColor: activeRuneTab === tab ? "var(--accent)" : "var(--panel-border)",
+                          background: activeRuneTab === tab ? "var(--accent-light)" : "var(--panel-bg)",
+                          color: activeRuneTab === tab ? "var(--accent)" : "var(--text-primary)",
+                          flex: 1,
+                          minWidth: "120px"
+                        }}
+                        onClick={() => setActiveRuneTab(tab)}
+                      >
+                        {tab === "urd" ? "📜 " + text.runesUrdTitle : 
+                         tab === "verdandi" ? "⚡ " + text.runesVerdandiTitle : 
+                         "✨ " + text.runesSkuldTitle}
+                      </button>
+                    ))}
+                  </div>
+                  
+                  {(() => {
+                    const activeRune = runesSpread[activeRuneTab];
+                    return (
+                      <div className="hexagram-detail-card" style={{ padding: 0, background: 'transparent', border: 'none' }}>
+                        <span className="hex-number" style={{fontFamily: "'Segoe UI Historic', 'Noto Sans Runic', sans-serif"}}>{activeRune.symbol}</span>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <h2 className="hex-title" style={{ margin: 0 }}>
+                            {activeRune.name[lang]}
+                          </h2>
+                          <button 
+                            className="btn-icon" 
+                            style={{ fontSize: '0.8rem', padding: '0.4rem 0.8rem' }}
+                            onClick={() => openCardModal(activeRune)}
+                          >
+                            🔍 {text.zoomCardBtn}
+                          </button>
+                        </div>
+                        <div className="badge-stage" style={{ marginBottom: '1rem', display: 'inline-block' }}>
+                          🦸‍♂️ {activeRune.aett[lang]}
+                        </div>
+                        <div className="badge-stage" style={{ marginBottom: '1rem', display: 'inline-block', marginLeft: '1rem', background: 'rgba(212, 175, 55, 0.15)', borderColor: 'rgba(212, 175, 55, 0.4)', color: '#d4af37' }}>
+                          ⚡ {activeRune.godOrPower[lang]}
+                        </div>
+                        <div className="hex-description">
+                          {activeRune.summary && activeRune.summary[lang] && (
+                            <>
+                              <h3 style={{marginTop: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)'}}>{text.runesMeaning}</h3>
+                              <p>{activeRune.summary[lang]}</p>
+                            </>
+                          )}
+                          
+                          {activeRune.jungianAnalysis && activeRune.jungianAnalysis[lang] && (
+                            <>
+                              <h3 style={{marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--accent)'}}>{text.runesJungian}</h3>
+                              <p>{activeRune.jungianAnalysis[lang]}</p>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+
+              <button className="btn-back" style={{ marginTop: '2rem' }} onClick={handleRestartRunes}>
+                {text.restartButton}
+              </button>
+            </div>
+          )}
+        </main>
+      )}
+
+      {/* --- CARD MAXIMIZE MODAL (TAROT & RUNES) --- */}
       {maximizedCard && (
         <div className="modal-backdrop" onClick={() => setMaximizedCard(null)}>
           <div className="modal-card-full glass-panel" onClick={(e) => e.stopPropagation()}>
             <header className="modal-toolbar">
               <div className="modal-title-group">
-                <span className="hex-number">{maximizedCard.numberRoman}</span>
+                <span className="hex-number" style={{fontFamily: 'symbol' in maximizedCard ? "'Segoe UI Historic', 'Noto Sans Runic', sans-serif" : "inherit"}}>
+                  {'symbol' in maximizedCard ? maximizedCard.symbol : maximizedCard.numberRoman}
+                </span>
                 <h2>{maximizedCard.name[lang]}</h2>
-                <span className="badge-stage" style={{ margin: 0 }}>🦸‍♂️ {maximizedCard.heroJourneyStage[lang]}</span>
+                <span className="badge-stage" style={{ margin: 0 }}>🦸‍♂️ {'aett' in maximizedCard ? maximizedCard.aett[lang] : maximizedCard.heroJourneyStage[lang]}</span>
               </div>
               <div className="modal-actions">
                 <button className="zoom-btn-control" onClick={handleZoomIn} title="Zoom In">
