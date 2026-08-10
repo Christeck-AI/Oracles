@@ -849,7 +849,7 @@ function App() {
                   onChange={(e) => setQuestion(e.target.value)}
                 />
               </div>
-              <div className="oracle-icon" style={{ fontSize: '4rem', marginBottom: '1rem' }}>ᛉ</div>
+              <div className="oracle-icon" style={{ fontSize: '4rem', marginBottom: '1rem', fontFamily: "'Segoe UI Historic', 'Noto Sans Runic', sans-serif", letterSpacing: '0.2em' }}>ᚠᚢᚦᚨᚱᚲ</div>
               <p style={{ fontStyle: "italic", color: "var(--text-secondary)", marginBottom: '2rem', maxWidth: '600px', textAlign: 'center' }}>
                 {text.runesIntroText}
               </p>
