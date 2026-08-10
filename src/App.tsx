@@ -261,7 +261,7 @@ function App() {
       case "tarot":
         return { url: "./sacred_horizon.mp3", name: "Sacred Horizon" };
       case "runes":
-        return { url: "./sacred_stillness.mp3", name: "Sacred Stillness" };
+        return { url: "./bone_mantra.mp3", name: "Bone Mantra" };
       case "menu":
       default:
         return { url: "./sacred_stillness.mp3", name: "Sacred Stillness" };
