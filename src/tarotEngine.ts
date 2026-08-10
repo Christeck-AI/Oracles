@@ -8,7 +8,7 @@ export interface SpreadDrawResult {
   future: TarotCardData;
 }
 
-export { TAROT_DECK };
+export { TAROT_DECK, type TarotCardData };
 
 /**
  * Draws 3 unique random cards from the Major Arcana deck.

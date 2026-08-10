@@ -6,7 +6,7 @@ import {
   CoinRollResult, 
   HexagramData 
 } from './ichingEngine';
-import { drawTarotSpread, SpreadDrawResult } from './tarotEngine';
+import { drawTarotSpread, SpreadDrawResult, TarotCardData } from './tarotEngine';
 import './App.css';
 
 const UI_TEXT = {
@@ -49,13 +49,17 @@ const UI_TEXT = {
     tarotSummary: "Resumen Psicológico",
     tarotSymbolism: "Simbología (Rider-Waite)",
     tarotJungian: "Análisis Junguiano",
-    tarotHero: "El Viaje del Héroe"
+    tarotHero: "El Viaje del Héroe",
+    zoomCardBtn: "Ver Carta en Tamaño Completo",
+    zoomCardHint: "Haz clic para ver en detalle",
+    closeModal: "Cerrar",
+    closeModalHint: "(Haz clic fuera o presiona ESC para cerrar)"
   },
   en: {
     title: "ORACLES OF INDIVIDUATION",
     subtitle: "Synchronicity and the Hero's Journey",
     menuIntro: "SELECT THE MIRROR IN WHICH YOU WISH TO LOOK AT YOUR PSYCHE TODAY",
-    ichingTitle: "I-Ching. Oracle of Individuation",
+    ichingTitle: "I-Ching. Oracle of Divination",
     questionPlaceholder: "Write your question",
     ichingDesc: "The book of changes. Reveals the dynamic forces and shifts in your current state.",
     tarotTitle: "Tarot. Oracle of Divination",
@@ -90,7 +94,11 @@ const UI_TEXT = {
     tarotSummary: "Psychological Summary",
     tarotSymbolism: "Symbolism (Rider-Waite)",
     tarotJungian: "Jungian Analysis",
-    tarotHero: "The Hero's Journey"
+    tarotHero: "The Hero's Journey",
+    zoomCardBtn: "View Full Size Card",
+    zoomCardHint: "Click to view details",
+    closeModal: "Close",
+    closeModalHint: "(Click outside or press ESC to close)"
   }
 };
 
@@ -105,6 +113,38 @@ const getLineInterpretation = (hexData: HexagramData, lineIndex: number, lang: "
     return `Line ${lineIndex} in transition: Points to a change in this area of your life. Jung suggests observing this tension to integrate it into your individuation.`;
   }
 };
+
+interface ProtectedImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+  onClick?: () => void;
+  style?: React.CSSProperties;
+}
+
+function ProtectedImage({ src, alt, className = "", onClick, style }: ProtectedImageProps) {
+  return (
+    <div 
+      className={`protected-img-wrapper ${className}`}
+      onClick={onClick}
+      style={{ position: 'relative', cursor: onClick ? 'pointer' : 'default', display: 'inline-block', ...style }}
+      onContextMenu={(e) => e.preventDefault()}
+    >
+      <div 
+        className="protected-img-overlay"
+        onContextMenu={(e) => e.preventDefault()}
+        onDragStart={(e) => e.preventDefault()}
+      />
+      <img 
+        src={src} 
+        alt={alt} 
+        draggable={false} 
+        onContextMenu={(e) => e.preventDefault()}
+        onDragStart={(e) => e.preventDefault()}
+      />
+    </div>
+  );
+}
 
 function App() {
   const [lang, setLang] = useState<"es" | "en">("es");
@@ -122,11 +162,41 @@ function App() {
   const [isDrawingTarot, setIsDrawingTarot] = useState(false);
   const [tarotSpread, setTarotSpread] = useState<SpreadDrawResult | null>(null);
   const [activeTarotTab, setActiveTarotTab] = useState<"past" | "present" | "future">("past");
+  const [maximizedCard, setMaximizedCard] = useState<TarotCardData | null>(null);
 
   // Sync HTML theme attribute
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  // Keyboard Escape listener & contextmenu prevention for image downloads
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMaximizedCard(null);
+      }
+    };
+    const preventContextMenu = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'IMG' || target.classList.contains('protected-img-overlay')) {
+        e.preventDefault();
+      }
+    };
+    const preventDrag = (e: DragEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'IMG' || target.classList.contains('protected-img-overlay')) {
+        e.preventDefault();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('contextmenu', preventContextMenu);
+    window.addEventListener('dragstart', preventDrag);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('contextmenu', preventContextMenu);
+      window.removeEventListener('dragstart', preventDrag);
+    };
+  }, []);
 
   const toggleLanguage = () => setLang(prev => (prev === "es" ? "en" : "es"));
   const toggleTheme = () => setTheme(prev => (prev === "light" ? "dark" : "light"));
@@ -464,27 +534,30 @@ function App() {
             <div className="tarot-spread-layout">
               {/* Spread visualizer top area */}
               <div className="spread-visualizer">
-                <div 
-                  className={`tarot-card-slot ${activeTarotTab === 'past' ? 'active-slot' : ''}`}
-                  onClick={() => setActiveTarotTab("past")}
-                >
-                  <img src={tarotSpread.past.image} alt={tarotSpread.past.name[lang]} className="tarot-img" />
-                  <div className="slot-label">{text.pastTitle}</div>
-                </div>
-                <div 
-                  className={`tarot-card-slot ${activeTarotTab === 'present' ? 'active-slot' : ''}`}
-                  onClick={() => setActiveTarotTab("present")}
-                >
-                  <img src={tarotSpread.present.image} alt={tarotSpread.present.name[lang]} className="tarot-img" />
-                  <div className="slot-label">{text.presentTitle}</div>
-                </div>
-                <div 
-                  className={`tarot-card-slot ${activeTarotTab === 'future' ? 'active-slot' : ''}`}
-                  onClick={() => setActiveTarotTab("future")}
-                >
-                  <img src={tarotSpread.future.image} alt={tarotSpread.future.name[lang]} className="tarot-img" />
-                  <div className="slot-label">{text.futureTitle}</div>
-                </div>
+                {(["past", "present", "future"] as const).map(position => {
+                  const card = tarotSpread[position];
+                  const title = position === 'past' ? text.pastTitle : position === 'present' ? text.presentTitle : text.futureTitle;
+                  const isActive = activeTarotTab === position;
+                  return (
+                    <div 
+                      key={position}
+                      className={`tarot-card-slot ${isActive ? 'active-slot' : ''}`}
+                      onClick={() => {
+                        setActiveTarotTab(position);
+                        setMaximizedCard(card);
+                      }}
+                      title={text.zoomCardHint}
+                    >
+                      <div className="slot-img-wrapper">
+                        <ProtectedImage src={card.image} alt={card.name[lang]} className="tarot-img" />
+                        <div className="zoom-badge">
+                          🔍 {lang === "es" ? "Ampliar" : "Expand"}
+                        </div>
+                      </div>
+                      <div className="slot-label">{title}</div>
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Spread interpretation bottom area */}
@@ -516,9 +589,18 @@ function App() {
                     return (
                       <div className="hexagram-detail-card" style={{ padding: 0, background: 'transparent', border: 'none' }}>
                         <span className="hex-number">{activeCard.numberRoman}</span>
-                        <h2 className="hex-title">
-                          {activeCard.name[lang]}
-                        </h2>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                          <h2 className="hex-title" style={{ margin: 0 }}>
+                            {activeCard.name[lang]}
+                          </h2>
+                          <button 
+                            className="btn-icon" 
+                            style={{ fontSize: '0.8rem', padding: '0.4rem 0.8rem' }}
+                            onClick={() => setMaximizedCard(activeCard)}
+                          >
+                            🔍 {text.zoomCardBtn}
+                          </button>
+                        </div>
                         <div className="badge-stage" style={{ marginBottom: '1rem' }}>
                           🦸‍♂️ {activeCard.heroJourneyStage[lang]}
                         </div>
@@ -563,6 +645,32 @@ function App() {
             </div>
           )}
         </main>
+      )}
+
+      {/* --- TAROT CARD MAXIMIZE MODAL --- */}
+      {maximizedCard && (
+        <div className="modal-backdrop" onClick={() => setMaximizedCard(null)}>
+          <div className="modal-card glass-panel" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => setMaximizedCard(null)} title={text.closeModal}>
+              ✕
+            </button>
+            <div className="modal-img-container">
+              <ProtectedImage 
+                src={maximizedCard.image} 
+                alt={maximizedCard.name[lang]} 
+                className="maximized-tarot-img"
+              />
+            </div>
+            <div className="modal-card-info">
+              <span className="hex-number">{maximizedCard.numberRoman}</span>
+              <h2 className="hex-title" style={{ margin: '0.25rem 0' }}>{maximizedCard.name[lang]}</h2>
+              <div className="badge-stage" style={{ marginTop: '0.5rem' }}>
+                🦸‍♂️ {maximizedCard.heroJourneyStage[lang]}
+              </div>
+              <p className="modal-hint">{text.closeModalHint}</p>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
