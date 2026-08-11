@@ -8,7 +8,7 @@ Este documento establece la guía técnica, arqueológica y mística para genera
 ## 🛡️ La Triada Estética: Runa, Dios y Símbolo
 
 Para cada ilustración, la jerarquía visual es estricta:
-1. **Foco Principal (LA RUNA):** El glifo rúnico (ej. ᛈ, ᛉ, ᛋ) debe ser el centro absoluto, tallado profundamente en la piedra y brillando o destacando visualmente.
+1. **Foco Principal (LA RUNA):** El glifo rúnico (ej. ᛈ, ᛉ, ᛋ) debe ser el centro absoluto, tallado profundamente en la piedra y brillando o destacando visualmente. La runa tiene entre una luminosidad dorada y tirandole a color fuego.
 2. **Fondo / Entorno (EL DIOS):** La presencia del dios no es un personaje humano, sino un **rostro místico tallado en bajorrelieve (*bas-relief*)** en la misma piedra, observando desde el fondo (estilo piedra de Gotland o placas de Vendel).
 3. **Detalles (EL SÍMBOLO):** Objetos sagrados (Gjallarhorn, manzanas de Idunn, cuervos) entrelazados en el tallado alrededor de la runa.
 
@@ -23,6 +23,7 @@ Para cada ilustración, la jerarquía visual es estricta:
 
 ### Tarea 1: Verificación y Auditoría de Diffs de Texto (`App.tsx` & `runesData.ts`)
 - **Acción:** Confirmar que la etiqueta del UI `"El Camino del Héroe"` esté correctamente integrada y desplegada en producción.
+- Revisa las previas runas generadas y asegúrate de que la calidad sea consistente con lo esperado.
 - **Beneficio:** 9/10 - Coherencia total de la interfaz.
 - **Riesgo:** 1/10 - Cambio cosmético de bajo riesgo.
 - **Modelo Sugerido:** Gemini 3.1 Pro 🧠 - Verificación exacta.
@@ -40,7 +41,7 @@ Para cada ilustración, la jerarquía visual es estricta:
 - **15. Algiz (ᛉ) — El Escudo de Cuernos y Santuario**
   - *Dios y Aspecto:* Heimdall (El Guardián Inviolable de Bifröst).
   - *Símbolos:* El cuerno Gjallarhorn y astas de alce sagradas.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the rune ALGIZ (ᛉ) shaped like branching elk horns, deeply carved into mossy granite. Carved in the background stone bas-relief is the stern, vigilant visage of Heimdall watching over Bifröst. Inlaid in bronze at the base of the rune is the Gjallarhorn. Dark moody lighting, hyperrealistic stone texture.`
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the rune ALGIZ (ᛉ) shaped like branching elk horns, deeply carved into mossy granite. Carved in the background stone bas-relief is the stern, vigilant visage of Heimdall, carryng a shield, watching over Bifröst. Inlaid in bronze at the base of the rune is the Gjallarhorn. Dark moody lighting, hyperrealistic stone texture.`
 - **16. Sowilo (ᛋ) — La Rueda Solar y el Rayo**
   - *Dios y Aspecto:* Sól y Baldr (Victoria Solar e Iluminación).
   - *Símbolos:* Disco solar de Trundholm y la flor *Baldrsbrá*.
