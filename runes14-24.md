@@ -1,26 +1,16 @@
 # Plan de Implementación: Generación Artística de Runas 14 a 24
 *Fecha de Registro: 2026-08-10*
 
-Este documento establece la guía técnica, arqueológica y mística para generar las 11 ilustraciones rúnicas restantes (**Perthro** a **Othala**, IDs 14 a 24), sintetizando la **presencia mística del Dios asociado (en bajorrelieve nórdico de piedra/metal)** y sus **símbolos sagrados**, basándose en las piedras pictóricas de Gotland y placas metálicas del periodo Vendel en Dinamarca y Suecia.
+Este documento establece la guía técnica, arqueológica y mística para generar las 11 ilustraciones rúnicas restantes (**Perthro** a **Othala**, IDs 14 a 24). Sintetiza tres elementos inseparables: **El Glifo y Significado de la Runa (Foco Principal)**, **La Esencia Mística del Dios (bajorrelieve)** y **Los Símbolos Sagrados**. Todo bajo la continuidad estética de las runas 1 a 13 (piedra tallada, chiaroscuro, oro/bronce, sin humanos modernos ni tropos pop).
 
 ---
 
-## 🛡️ Síntesis Mística y Arquetípica de los Dioses (Runas 14 a 24)
+## 🛡️ La Triada Estética: Runa, Dios y Símbolo
 
-### 1. El Concepto Artístico de las Runas
-Los dioses no se representan como personajes humanos externos o modernos, sino como **la esencia mística del Dios personificada en bajorrelieve en la piedra rúnica** (*bas-relief carving* al estilo de los artefactos de Vendel y Gotland), mostrando su **aspecto espiritual específico**:
-
-- **Perthro (14) — Frigg (Tejedora del Destino):** Rostro velado y místico de Frigg como Völva Suprema cuidando los hilos de las Nornas en Urðarbrunnr.
-- **Algiz (15) — Heimdall (Guardián Inviolable):** Rostro de bajorrelieve de Heimdall en su aspecto vigilante y protector cuidando Bifröst, junto al cuerno Gjallarhorn y astas de alce.
-- **Sowilo (16) — Sól y Baldr (Victoria Solar):** Rostro radiante de Baldr emergiendo en oro en relieve del disco solar de Trundholm.
-- **Tiwaz (17) — Tyr (Juez Honorable y Sacrificio):** Rostro de firmeza inquebrantable de Tyr en bajorrelieve de hierro con el brazo sacrificado y las cadenas de Gleipnir.
-- **Berkano (18) — Idunn y Frigg (Madre Nutricia):** Rostro de gracia materna grabado en madera de abedul y granito con las manzanas de oro de la juventud.
-- **Ehwaz (19) — Freyr y Sleipnir (Sinergia Dual):** Visajes de la Alianza Divina entrelazados con el corcel de 8 patas Sleipnir.
-- **Mannaz (20) — Heimdall como Ríg (Padre de la Humanidad):** Rostro noble de Ríg unificando el intelecto humano y las fases lunares de Máni.
-- **Laguz (21) — Njörðr y Rán (Profundidad Oceánica):** Rostro místico del dios del mar surgido de las olas talladas y la red marina.
-- **22. Ingwaz — Ing-Freyr (Semilla Fértil y Gestación):** Rostro del dios de la tierra labrado dentro del diamante sagrado con el jabalí Gullinbursti.
-- **23. Dagaz — Dagr y Baldr (Iluminación Trascendente):** Rostro del amanecer cruzando el umbral de la noche a la luz radiante de Skinfaxi.
-- **24. Othala — Odín (El Padre Todo-Vidente):** Rostro sagrado de Odín con **su único ojo místico** que ve más allá de la dualidad del bien y del mal, de lo alto y lo bajo, flanqueado por Huginn y Muninn en el recinto ancestral.
+Para cada ilustración, la jerarquía visual es estricta:
+1. **Foco Principal (LA RUNA):** El glifo rúnico (ej. ᛈ, ᛉ, ᛋ) debe ser el centro absoluto, tallado profundamente en la piedra y brillando o destacando visualmente.
+2. **Fondo / Entorno (EL DIOS):** La presencia del dios no es un personaje humano, sino un **rostro místico tallado en bajorrelieve (*bas-relief*)** en la misma piedra, observando desde el fondo (estilo piedra de Gotland o placas de Vendel).
+3. **Detalles (EL SÍMBOLO):** Objetos sagrados (Gjallarhorn, manzanas de Idunn, cuervos) entrelazados en el tallado alrededor de la runa.
 
 ---
 
@@ -33,100 +23,85 @@ Los dioses no se representan como personajes humanos externos o modernos, sino c
 
 ### Tarea 1: Verificación y Auditoría de Diffs de Texto (`App.tsx` & `runesData.ts`)
 - **Acción:** Confirmar que la etiqueta del UI `"El Camino del Héroe"` esté correctamente integrada y desplegada en producción.
-- **Beneficio:** 9/10 - Coherencia total de la interfaz con los nombres solicitados por el usuario.
+- **Beneficio:** 9/10 - Coherencia total de la interfaz.
 - **Riesgo:** 1/10 - Cambio cosmético de bajo riesgo.
-- **Modelo Sugerido:** Gemini 3.5 Flash ⚡ - Tarea rápida de verificación.
+- **Modelo Sugerido:** Gemini 3.1 Pro 🧠 - Verificación exacta.
 
 ---
 
 ### Tarea 2: Generación del Lote 1 de Runas (IDs 14 a 17)
-- **Acción:** Generar e integrar las imágenes rúnicas de **Perthro**, **Algiz**, **Sowilo** y **Tiwaz** incorporando la cara/aspecto en bajorrelieve del Dios y sus símbolos.
-- **Beneficio:** 10/10 - Avance de 4 de las 11 runas faltantes.
-- **Riesgo:** 2/10 - Reemplazo de placeholders PNG por arte final.
-- **Modelo Sugerido:** Gemini 3.5 Flash ⚡ (con herramienta de generación de imágenes `generate_image`).
+- **Acción:** Generar e integrar las imágenes rúnicas de **Perthro**, **Algiz**, **Sowilo** y **Tiwaz**.
 
 #### Prompts Específicos por Runa:
-- **14. Perthro (ᛈ) — Frigg (Tejedora del Destino) y las Nornas**
-  - *Dios / Aspecto:* Frigg en su aspecto de Queen of Fate y Völva Suprema.
-  - *Símbolo y Visaje:* Bajorrelieve del rostro velado de Frigg en piedra basáltica, el huso de hilo de oro (*Friggerock*) y gotas del pozo Urðarbrunnr.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is a weathered basalt stone slab carved with the rune PERTHRO (ᛈ) glowing with gold light. Carved in deep Norse bas-relief above the rune is the solemn, veiled visage of Goddess Frigg as Seeress of Fate, intertwined with golden spindle threads and water drops from Urðarbrunnr. Dark gold hues, hyperrealistic stone texture, dark vignette, museum lighting.`
-- **15. Algiz (ᛉ) — Heimdall (Guardián Inviolable y Vigilante)**
-  - *Dios / Aspecto:* Heimdall en su aspecto de Guardián Inviolable de Bifröst.
-  - *Símbolo y Visaje:* Bajorrelieve del rostro severo y vigilante de Heimdall en granito, con ojos místicos celestiales, astas de alce y el cuerno Gjallarhorn en bronce a la base.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is a moss-covered granite stone bearing the rune ALGIZ (ᛉ) shaped like branching elk horns. Carved into the stone bas-relief is the stern, ever-vigilant visage of Heimdall watching over Bifröst. Inlaid in bronze at the base is Gjallarhorn. Dark moody lighting, subtle gold highlights, hyperrealistic stone carved texture.`
-- **16. Sowilo (ᛋ) — Baldr y Sól (Victoria Solar e Iluminación)**
-  - *Dios / Aspecto:* Baldr el Radiante y la Diosa Sól en su triunfo solar.
-  - *Símbolo y Visaje:* Bajorrelieve dorado del rostro luminoso de Baldr integrado en el disco solar de Trundholm.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is an ancient dark stone artifact engraved with the solar rune SOWILO (ᛋ). Carved in glowing gold leaf bas-relief is the luminous visage of Baldr, god of light, merged with the bronze solar disc of Trundholm and Baldrsbrá petals. Dramatic chiaroscuro, warm gold radiance against dark basalt, hyperrealistic texture.`
-- **17. Tiwaz (ᛏ) — Tyr (Juez Honorable y Sacrificio Supremo)**
-  - *Dios / Aspecto:* Tyr en su aspecto de Dios Manco del Honor y la Ley.
-  - *Símbolo y Visaje:* Bajorrelieve del rostro estoico e inquebrantable de Tyr en pilar de hierro y piedra, con el brazo sacrificado y las cadenas de Gleipnir.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is a solemn iron and stone pillar inscribed with the spear rune TIWAZ (ᛏ). Carved in heavy Norse bas-relief is the stoic, noble face of Tyr, god of justice, alongside iron chain links of Gleipnir and sacred sword filigree. Dark misty Nordic atmosphere, ancient iron oxidation, solemn lighting, hyperrealistic stone and metal carving.`
+- **14. Perthro (ᛈ) — El Cubilete del Destino**
+  - *Dios y Aspecto:* Frigg (Völva Suprema y Tejedora del Destino).
+  - *Símbolos:* El huso de oro (*Friggerock*) y el pozo de Urðarbrunnr.
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the rune PERTHRO (ᛈ) deeply carved into a basalt slab and glowing with inner gold light. Carved in the background stone bas-relief is the solemn, veiled visage of Goddess Frigg as Seeress of Fate. Intertwined around the glowing rune are golden spindle threads and water drops from Urðarbrunnr. Hyperrealistic stone texture, dark vignette.`
+- **15. Algiz (ᛉ) — El Escudo de Cuernos y Santuario**
+  - *Dios y Aspecto:* Heimdall (El Guardián Inviolable de Bifröst).
+  - *Símbolos:* El cuerno Gjallarhorn y astas de alce sagradas.
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the rune ALGIZ (ᛉ) shaped like branching elk horns, deeply carved into mossy granite. Carved in the background stone bas-relief is the stern, vigilant visage of Heimdall watching over Bifröst. Inlaid in bronze at the base of the rune is the Gjallarhorn. Dark moody lighting, hyperrealistic stone texture.`
+- **16. Sowilo (ᛋ) — La Rueda Solar y el Rayo**
+  - *Dios y Aspecto:* Sól y Baldr (Victoria Solar e Iluminación).
+  - *Símbolos:* Disco solar de Trundholm y la flor *Baldrsbrá*.
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the solar rune SOWILO (ᛋ) brilliantly carved and glowing with golden fire. Carved in gold leaf bas-relief behind the rune is the luminous visage of Baldr, merged with the bronze solar spirals of the Trundholm sun chariot. Dramatic chiaroscuro, warm gold radiance against dark basalt, hyperrealistic.`
+- **17. Tiwaz (ᛏ) — La Lanza de la Justicia y el Sacrificio**
+  - *Dios y Aspecto:* Tyr (El Juez Honorable).
+  - *Símbolos:* La lanza sagrada y los eslabones de la cadena *Gleipnir*.
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the upward spear rune TIWAZ (ᛏ) deeply inscribed in an iron and stone pillar. Carved in the background bas-relief is the stoic, noble face of Tyr, god of justice. Wrapped around the glowing rune are iron chain links of Gleipnir and sacred sword filigree. Ancient iron oxidation, solemn lighting.`
 
 ---
 
 ### Tarea 3: Generación del Lote 2 de Runas (IDs 18 a 21)
-- **Acción:** Generar e integrar las imágenes rúnicas de **Berkano**, **Ehwaz**, **Mannaz** y **Laguz** con los rostros y aspectos de Idunn, Freyr/Sleipnir, Ríg y Njörðr.
-- **Beneficio:** 10/10 - Avance de otras 4 runas.
-- **Riesgo:** 2/10 - Reemplazo de placeholders PNG.
-- **Modelo Sugerido:** Gemini 3.5 Flash ⚡.
+- **Acción:** Generar e integrar las imágenes rúnicas de **Berkano**, **Ehwaz**, **Mannaz** y **Laguz**.
 
 #### Prompts Específicos por Runa:
-- **18. Berkano (ᛒ) — Idunn y Frigg (Madre Nutricia y Renacimiento)**
-  - *Dios / Aspecto:* Idunn y la Gran Madre en su aspecto de gracia y sanación.
-  - *Símbolo y Visaje:* Bajorrelieve del rostro materno de Idunn labrado en abedul y granito con manzanas doradas.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is a dark stone tablet engraved with the rune BERKANO (ᛒ). Carved in gentle Norse bas-relief is the serene maternal visage of Goddess Idunn, surrounded by golden apples and spiraling birch vine interlace. Soft warm illumination, organic dark wood and stone textures, hyperrealistic detail.`
-- **19. Ehwaz (ᛖ) — Freyr y Sleipnir (Sinergia Dual y Alianza Sagrada)**
-  - *Dios / Aspecto:* Freyr y la Alianza Divina con el corcel Sleipnir.
-  - *Símbolo y Visaje:* Bajorrelieve de visajes entrelazados con el caballo de 8 patas Sleipnir (estilo piedra de Gotland).
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is a dark slate rune stone bearing the twin-horse rune EHWAZ (ᛖ). Carved in Gotland-style bas-relief are the noble faces of the divine partners intertwined with Sleipnir's 8-legged horse knotwork, inlaid with gold and bronze. Dark moody tone, cinematic side lighting, hyperrealistic stone texture.`
-- **20. Mannaz (ᛗ) — Heimdall como Ríg (Padre de la Sociedad Humana)**
-  - *Dios / Aspecto:* Ríg (Heimdall) insuflando mente y sabiduría a la humanidad.
-  - *Símbolo y Visaje:* Bajorrelieve del rostro primordial de Ríg unificando las fases lunares de Máni.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is a dark polished granite stone carved with the rune MANNAZ (ᛗ). Carved in noble bas-relief is the primordial face of Ríg (Heimdall) surrounded by silver lunar phase engravings of Máni and human interlace. Deep shadow contrast, museum quality, hyperrealistic.`
-- **21. Laguz (ᛚ) — Njörðr y Rán (Señores del Océano Inconsciente)**
-  - *Dios / Aspecto:* Njörðr y Rán en su aspecto de profundidad oceánica e intuición.
-  - *Símbolo y Visaje:* Bajorrelieve místico del rostro del dios del mar emergiendo de las olas y la red sagrada.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is a wet dark sea-stone carved with the ocean rune LAGUZ (ᛚ). Carved into the stone bas-relief is the mysterious face of sea-god Njörðr emerging from dragon-ship prows and sea-net patterns of Rán. Water droplets glistening on dark stone, dark aqua and warm gold glows, hyperrealistic wet stone texture.`
+- **18. Berkano (ᛒ) — El Abedul de Renacimiento y Sanación**
+  - *Dios y Aspecto:* Idunn y Frigg (La Madre Nutricia).
+  - *Símbolos:* Manzanas de oro de la juventud (*Epli*) y corteza de abedul.
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the rune BERKANO (ᛒ) carved into a tablet of silver-grained birch and dark stone. Carved in gentle bas-relief in the background is the serene maternal visage of Goddess Idunn. Resting around the rune are subtle golden apples and spiraling green birch vines. Soft warm illumination, organic texture.`
+- **19. Ehwaz (ᛖ) — El Corcel Sagrado y Sinergia Dual**
+  - *Dios y Aspecto:* Freyr y Sleipnir (La Alianza Divina).
+  - *Símbolos:* Nudos rúnicos del caballo de 8 patas (estilo Gotland).
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the twin-horse rune EHWAZ (ᛖ) deeply carved into dark slate. Carved in the background bas-relief are the noble intertwined faces of the divine partners. Surrounding the rune is Sleipnir's 8-legged horse knotwork inlaid with bronze. Dark cinematic side lighting, hyperrealistic stone texture.`
+- **20. Mannaz (ᛗ) — La Humanidad e Integración Social**
+  - *Dios y Aspecto:* Heimdall como Ríg (El Padre Primordial).
+  - *Símbolos:* Anillo/Corona de Ríg y las fases de Máni (la Luna).
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the rune MANNAZ (ᛗ) deeply carved into polished granite. Carved in the background bas-relief is the primordial face of Ríg (Heimdall) unifying the mind. Entwined with the rune are silver lunar phase engravings of Máni and human interlace patterns. Deep shadow contrast, museum quality.`
+- **21. Laguz (ᛚ) — Las Aguas del Océano e Intuición**
+  - *Dios y Aspecto:* Njörðr y Rán (Los Señores del Océano Inconsciente).
+  - *Símbolos:* Mascarón de proa de drakkar y la red sagrada de Rán.
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the ocean rune LAGUZ (ᛚ) carved into a wet dark sea-stone. Carved in the background bas-relief is the mysterious face of sea-god Njörðr emerging from the waves. Interlaced with the rune are dragon-ship prows and sea-net patterns of Rán. Water droplets glistening, dark aqua glows, hyperrealistic.`
 
 ---
 
 ### Tarea 4: Generación del Lote 3 de Runas (IDs 22 a 24)
-- **Acción:** Generar e integrar las últimas 3 imágenes: **Ingwaz**, **Dagaz** y **Othala** con los visajes divinos de Freyr, Dagr y Odín Todo-Vidente.
-- **Beneficio:** 10/10 - Completa el 100% de las 24 runas del Elder Futhark en alta definición.
-- **Riesgo:** 2/10 - Consolidación final del oráculo.
-- **Modelo Sugerido:** Gemini 3.5 Flash ⚡.
+- **Acción:** Generar e integrar las imágenes rúnicas de **Ingwaz**, **Dagaz** y **Othala**.
 
 #### Prompts Específicos por Runa:
-- **22. Ingwaz (ᛝ) — Ing-Freyr (Semilla Fértil y Gestación)**
-  - *Dios / Aspecto:* Ing-Freyr en su aspecto de gestación interna en la tierra.
-  - *Símbolo y Visaje:* Bajorrelieve del rostro terrenal de Freyr (estilo estatuilla de Rällinge) dentro del diamante sagrado con Gullinbursti.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is a dark diamond rune stone inscribed with INGWAZ (ᛝ). Carved in bas-relief inside the diamond is the earthy visage of Ing-Freyr and golden boar bristle motifs of Gullinbursti. Glowing golden seed from within dark fertile soil, hyperrealistic stone detail.`
-- **23. Dagaz (ᛞ) — Dagr y Baldr (Amanecer e Iluminación Trascendente)**
-  - *Dios / Aspecto:* Dagr cruzando el umbral de la noche al día.
-  - *Símbolo y Visaje:* Bajorrelieve del rostro radiante del dios del día cruzando la noche con la melena de Skinfaxi.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is a split dark-and-light stone carving of the infinity rune DAGAZ (ᛞ). Carved in high-relief is the radiant face of Dagr, god of day, riding Skinfaxi's flaming mane from darkness into golden morning light. High contrast chiaroscuro, hyperrealistic stone texture.`
-- **24. Othala (ᛟ) — Odín (El Padre Todo-Vidente y Más Allá de la Dualidad)**
-  - *Dios / Aspecto:* Odín como Padre Todo-Vidente con **su único ojo místico** que ve más allá del bien y del mal, de lo alto y lo bajo.
-  - *Símbolo y Visaje:* Bajorrelieve del rostro sagrado de Odín con su único ojo resplandeciente, flanqueado por Huginn y Muninn en el recinto ancestral.
-  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The central focal point is a massive ancestral boundary stone engraved with OTHALA (ᛟ). Carved in majestic Vendel-style bas-relief is the awe-inspiring face of Allfather Odin, featuring his SINGLE GLOWING MYSTICAL EYE that sees beyond duality, high and low, good and evil. Flanked by ravens Huginn and Muninn and Odin's oath ring, inlaid with gold and iron. Majestic, dark, ancient heritage aesthetic, hyperrealistic texture.`
+- **22. Ingwaz (ᛝ) — La Semilla y el Recinto Sagrado**
+  - *Dios y Aspecto:* Ing-Freyr (Gestación Fértil y Terrenal).
+  - *Símbolos:* Jabalí de oro *Gullinbursti* y la semilla diamante.
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the diamond-shaped rune INGWAZ (ᛝ) glowing like an incubating golden seed in dark soil. Carved in the background bas-relief inside the diamond temenos is the earthy visage of Ing-Freyr. Etched around the rune are golden boar bristle motifs of Gullinbursti. Rich earthy palette, hyperrealistic.`
+- **23. Dagaz (ᛞ) — El Amanecer y el Equilibrio Infinito**
+  - *Dios y Aspecto:* Dagr y Baldr (Iluminación Trascendente).
+  - *Símbolos:* El caballo solar *Skinfaxi* y el reloj de arena/infinito.
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the infinity rune DAGAZ (ᛞ) carved into a split dark-and-light stone. Carved in high-relief in the background is the radiant face of Dagr, riding Skinfaxi's flaming mane from night shadows into brilliant morning light. The glowing rune bridges the duality. High contrast chiaroscuro, hyperrealistic.`
+- **24. Othala (ᛟ) — El Hogar Ancestral y la Herencia**
+  - *Dios y Aspecto:* Odín (Padre Todo-Vidente, más allá de la dualidad).
+  - *Símbolos:* Su único ojo resplandeciente, Huginn y Muninn, y el anillo de juramento.
+  - *Prompt:* `A dark, mystical runic artwork matching the exact style of ancient Scandinavian rune stones. The absolute central focal point is the ancestral boundary rune OTHALA (ᛟ) deeply carved into a massive boundary stone. Carved in majestic Vendel-style bas-relief behind the rune is the awe-inspiring face of Allfather Odin with his SINGLE GLOWING MYSTICAL EYE. Flanking the glowing rune are ravens Huginn and Muninn and Odin's oath ring. Majestic heritage aesthetic.`
 
 ---
 
 ### Tarea 5: Despliegue, Build y Commit a GitHub Pages
-- **Acción:** Copiar los nuevos archivos PNG a `public/runes/`, ejecutar `npm run build`, crear un commit en git (`git commit -m "feat: integrate final artistic rune cards 14-24 with deity faces and symbols"`) y publicar en la rama `main`.
-- **Beneficio:** 10/10 - Publicación final accesible desde la URL pública `christeck9.github.io/Oracles/`.
-- **Riesgo:** 2/10 - Proceso estandarizado de CI/CD.
-- **Modelo Sugerido:** Gemini 3.5 Flash ⚡.
+- **Acción:** Copiar PNGs a `public/runes/`, ejecutar `npm run build`, y `git commit`.
+- **Beneficio:** 10/10 - Publicación final.
+- **Riesgo:** 2/10 - Proceso CI/CD.
+- **Modelo Sugerido:** Gemini 3.1 Pro 🧠.
 
 ---
 
 ## 🧪 Plan de Verificación
-
-### Inspección Automatizada
-- Ejecución de `npm run build` en el proyecto `/Users/default/Projects/Oracles` para validar la integridad del empaquetado de assets.
-
-### Verificación Manual por el Usuario
-- Cargar la URL de producción `christeck9.github.io/Oracles/#/runes`.
-- Tirar una tirada de las Nornas y verificar que las 24 runas muestren sus ilustraciones finales en formato `.png`.
-- Confirmar que la sección de detalle exponga claramente los tres bloques: *Significado Psicológico*, *Arquetipo Junguiano* y *El Camino del Héroe*.
+- Cargar `christeck9.github.io/Oracles/#/runes`.
+- Tirar una tirada y verificar que las 24 runas muestren sus ilustraciones (con el glifo, dios y símbolos).
