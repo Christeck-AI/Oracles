@@ -74,8 +74,8 @@ const UI_TEXT = {
     runesVerdandiTitle: "Verdandi (El Presente / Acción)",
     runesSkuldTitle: "Skuld (El Futuro / Devenir)",
     runesDeity: "Potencia Divina:",
-    runesJungian: "Arquetipo",
-    runesHero: "Etapa del Viaje",
+    runesJungian: "Arquetipo Junguiano",
+    runesHero: "El Camino del Héroe",
     runesMeaning: "Significado Psicológico"
   },
   en: {
@@ -141,8 +141,8 @@ const UI_TEXT = {
     runesVerdandiTitle: "Verdandi (The Present / Action)",
     runesSkuldTitle: "Skuld (The Future / Becoming)",
     runesDeity: "Divine Power:",
-    runesJungian: "Archetype",
-    runesHero: "Journey Stage",
+    runesJungian: "Jungian Archetype",
+    runesHero: "The Hero's Journey",
     runesMeaning: "Psychological Meaning"
   }
 };
