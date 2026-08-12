@@ -1214,6 +1214,12 @@ function App() {
                       <h3>{card.numberRoman}. {card.name[lang]}</h3>
                       <span className="print-badge">{title}</span>
                     </div>
+                    <div className="print-image-wrapper">
+                      <div className="print-image-container">
+                        <img src={card.image} alt={card.name[lang]} className="print-card-image" />
+                        <span className="print-watermark">© christeck {new Date().getFullYear()}</span>
+                      </div>
+                    </div>
                     <div className="print-section-title">{lang === "es" ? "Etapa del Viaje" : "Journey Stage"}</div>
                     <div className="print-section-content">{card.heroJourneyStage[lang]}</div>
                     <div className="print-section-title">{text.tarotSummary}</div>
@@ -1254,6 +1260,12 @@ function App() {
                     <div className="print-card-header">
                       <h3>{rune.name[lang]} ({rune.symbol})</h3>
                       <span className="print-badge">{title}</span>
+                    </div>
+                    <div className="print-image-wrapper">
+                      <div className="print-image-container">
+                        <img src={rune.image} alt={rune.name[lang]} className="print-card-image print-rune-image" />
+                        <span className="print-watermark">© christeck {new Date().getFullYear()}</span>
+                      </div>
                     </div>
                     <div className="print-section-title">{lang === "es" ? "Fuerza y Deidad" : "Power & Deity"}</div>
                     <div className="print-section-content">{rune.godOrPower[lang]}</div>
