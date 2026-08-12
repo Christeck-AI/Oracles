@@ -76,7 +76,8 @@ const UI_TEXT = {
     runesDeity: "Potencia Divina:",
     runesJungian: "Arquetipo Junguiano",
     runesHero: "El Camino del Héroe",
-    runesMeaning: "Significado Psicológico"
+    runesMeaning: "Significado Psicológico",
+    savePdf: "Guarda PDF / Save PDF"
   },
   en: {
     title: "ORACLES OF INDIVIDUATION",
@@ -143,7 +144,8 @@ const UI_TEXT = {
     runesDeity: "Divine Power:",
     runesJungian: "Jungian Archetype",
     runesHero: "The Hero's Journey",
-    runesMeaning: "Psychological Meaning"
+    runesMeaning: "Psychological Meaning",
+    savePdf: "Save PDF"
   }
 };
 
@@ -195,6 +197,7 @@ function ProtectedImage({ src, alt, className = "", onClick, style }: ProtectedI
 function App() {
   const [lang, setLang] = useState<"es" | "en">("es");
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [savedQuestion, setSavedQuestion] = useState("");
   const [activeOracle, setActiveOracle] = useState<"menu" | "iching" | "tarot" | "runes">(() => {
     const hash = window.location.hash.replace('#', '').toLowerCase();
     if (hash === 'iching' || hash === 'tarot' || hash === 'runes') {
@@ -345,7 +348,7 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  // Keyboard Escape listener & contextmenu prevention for image downloads
+  // Keyboard Escape listener & contextmenu prevention for media downloads
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -354,13 +357,23 @@ function App() {
     };
     const preventContextMenu = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.tagName === 'IMG' || target.classList.contains('protected-img-overlay')) {
+      if (
+        target.tagName === 'IMG' || 
+        target.tagName === 'VIDEO' || 
+        target.tagName === 'AUDIO' || 
+        target.classList.contains('protected-img-overlay')
+      ) {
         e.preventDefault();
       }
     };
     const preventDrag = (e: DragEvent) => {
       const target = e.target as HTMLElement;
-      if (target.tagName === 'IMG' || target.classList.contains('protected-img-overlay')) {
+      if (
+        target.tagName === 'IMG' || 
+        target.tagName === 'VIDEO' || 
+        target.tagName === 'AUDIO' || 
+        target.classList.contains('protected-img-overlay')
+      ) {
         e.preventDefault();
       }
     };
@@ -381,6 +394,9 @@ function App() {
   // --- I Ching Handlers ---
   const handleRoll = () => {
     if (lines.length >= 6 || isRolling) return;
+    if (lines.length === 0) {
+      setSavedQuestion(question);
+    }
     if (question.trim() !== "") {
       setQuestion("");
     }
@@ -396,6 +412,7 @@ function App() {
 
   const handleRestartIChing = () => {
     setQuestion("");
+    setSavedQuestion("");
     setLines([]);
     setRollResult(null);
     setIsRolling(false);
@@ -408,6 +425,7 @@ function App() {
   // --- Tarot Handlers ---
   const handleDrawTarot = () => {
     if (isDrawingTarot) return;
+    setSavedQuestion(question);
     if (question.trim() !== "") {
       setQuestion("");
     }
@@ -424,6 +442,7 @@ function App() {
 
   const handleRestartTarot = () => {
     setQuestion("");
+    setSavedQuestion("");
     setTarotSpread(null);
     setIsDrawingTarot(false);
   };
@@ -431,6 +450,7 @@ function App() {
   // --- Runes Handlers ---
   const handleDrawRunes = () => {
     if (isDrawingRunes) return;
+    setSavedQuestion(question);
     if (question.trim() !== "") {
       setQuestion("");
     }
@@ -446,6 +466,7 @@ function App() {
 
   const handleRestartRunes = () => {
     setQuestion("");
+    setSavedQuestion("");
     setRunesSpread(null);
     setIsDrawingRunes(false);
   };
@@ -460,7 +481,8 @@ function App() {
 
   return (
     <div className="app-container">
-      <header className="header">
+      <div className="screen-only">
+        <header className="header">
         <div className="title-area">
           <h1>{text.title}</h1>
           <span className="subtitle">{text.subtitle}</span>
@@ -500,12 +522,14 @@ function App() {
           <div className="video-container">
             <video 
               controls 
+              controlsList="nodownload"
               autoPlay 
               playsInline 
               className="intro-video"
               src="./IntroToOracles.mp4"
               onPlay={handleVideoPlay}
               onEnded={handleVideoEnded}
+              onContextMenu={(e) => e.preventDefault()}
             >
               Tu navegador no soporta la reproducción de video.
             </video>
@@ -581,9 +605,14 @@ function App() {
                 {isRolling ? text.rolling : text.rollButton}
               </button>
             ) : (
-              <button className="btn-roll" onClick={handleRestartIChing}>
-                {text.restartButton}
-              </button>
+              <div className="oracle-actions-container">
+                <button className="btn-restart" onClick={handleRestartIChing}>
+                  🔄 {text.restartButton}
+                </button>
+                <button className="btn-pdf" onClick={() => window.print()}>
+                  📄 {text.savePdf}
+                </button>
+              </div>
             )}
 
             {lines.length > 0 && (
@@ -621,6 +650,11 @@ function App() {
             ) : (
               ichingInterpretation && (
                 <div className="reading-panel">
+                  {savedQuestion && (
+                    <div className="saved-question-display">
+                      <strong>{lang === "es" ? "Consulta:" : "Question:"}</strong> "{savedQuestion}"
+                    </div>
+                  )}
                   <div className="controls" style={{ marginBottom: "1.5rem" }}>
                     <button 
                       className="btn-icon" 
@@ -777,6 +811,11 @@ function App() {
               {/* Spread interpretation bottom area */}
               <div className="spread-interpretation glass-panel">
                 <div className="reading-panel">
+                  {savedQuestion && (
+                    <div className="saved-question-display">
+                      <strong>{lang === "es" ? "Consulta:" : "Question:"}</strong> "{savedQuestion}"
+                    </div>
+                  )}
                   <div className="controls" style={{ marginBottom: "1.5rem", justifyContent: "center" }}>
                     {(["past", "present", "future"] as const).map(tab => (
                       <button 
@@ -853,9 +892,14 @@ function App() {
                 </div>
               </div>
 
-              <button className="btn-back" style={{ marginTop: '2rem' }} onClick={handleRestartTarot}>
-                {text.restartButton}
-              </button>
+              <div className="oracle-actions-container">
+                <button className="btn-restart" onClick={handleRestartTarot}>
+                  🔄 {text.restartButton}
+                </button>
+                <button className="btn-pdf" onClick={() => window.print()}>
+                  📄 {text.savePdf}
+                </button>
+              </div>
             </div>
           )}
         </main>
@@ -919,6 +963,11 @@ function App() {
 
               <div className="spread-interpretation glass-panel">
                 <div className="reading-panel">
+                  {savedQuestion && (
+                    <div className="saved-question-display">
+                      <strong>{lang === "es" ? "Consulta:" : "Question:"}</strong> "{savedQuestion}"
+                    </div>
+                  )}
                   <div className="controls" style={{ marginBottom: "1.5rem", justifyContent: "center", flexWrap: "wrap" }}>
                     {(["urd", "verdandi", "skuld"] as const).map(tab => (
                       <button 
@@ -991,9 +1040,14 @@ function App() {
                 </div>
               </div>
 
-              <button className="btn-back" style={{ marginTop: '2rem' }} onClick={handleRestartRunes}>
-                {text.restartButton}
-              </button>
+              <div className="oracle-actions-container">
+                <button className="btn-restart" onClick={handleRestartRunes}>
+                  🔄 {text.restartButton}
+                </button>
+                <button className="btn-pdf" onClick={() => window.print()}>
+                  📄 {text.savePdf}
+                </button>
+              </div>
             </div>
           )}
         </main>
@@ -1060,6 +1114,170 @@ function App() {
           </div>
         </div>
       )}
+      </div>
+
+      {/* --- PRINT ONLY REPORT --- */}
+      <div className="print-only">
+        <div className="print-report-container">
+          <div className="print-report-header">
+            <h1>{lang === "es" ? "Reporte de Consulta Espiritual" : "Spiritual Consultation Report"}</h1>
+            <div className="print-report-meta">
+              <span><strong>{lang === "es" ? "Fecha:" : "Date:"}</strong> {new Date().toLocaleDateString(lang === "es" ? "es-ES" : "en-US")}</span>
+              <span><strong>{lang === "es" ? "Oráculo:" : "Oracle:"}</strong> {
+                activeOracle === "iching" ? (lang === "es" ? "I Ching" : "I Ching") :
+                activeOracle === "tarot" ? (lang === "es" ? "Tarot (Tirada de 3 Cartas)" : "Tarot (3-Card Spread)") :
+                activeOracle === "runes" ? (lang === "es" ? "Runas (Tirada de 3 Runas)" : "Runes (3-Rune Spread)") : ""
+              }</span>
+            </div>
+          </div>
+
+          {savedQuestion && (
+            <div className="print-question-block">
+              <strong>{lang === "es" ? "Consulta formulada:" : "Formulated Query:"}</strong> "{savedQuestion}"
+            </div>
+          )}
+
+          {/* I Ching Print Details */}
+          {activeOracle === "iching" && isIChingFinished && ichingInterpretation && (
+            <div>
+              <h2 className="print-oracle-title">{lang === "es" ? "Interpretación del I Ching" : "I Ching Interpretation"}</h2>
+              
+              <div className="print-card-details">
+                <div className="print-card-header">
+                  <h3>{ichingInterpretation.primary.number}. {ichingInterpretation.primary.name[lang]} ({ichingInterpretation.primary.name.pinyin})</h3>
+                  <span className="print-badge">{lang === "es" ? "Hexagrama Presente" : "Present Hexagram"}</span>
+                </div>
+                <div className="print-section-title">{lang === "es" ? "Imagen" : "Image"}</div>
+                <div className="print-section-content">{ichingInterpretation.primary.image[lang]}</div>
+                <div className="print-section-title">{lang === "es" ? "Etapa del Viaje" : "Journey Stage"}</div>
+                <div className="print-section-content">{ichingInterpretation.primary.heroJourneyStage[lang]}</div>
+                <div className="print-section-title">{lang === "es" ? "Análisis Psicológico" : "Psychological Analysis"}</div>
+                <div className="print-section-content">{ichingInterpretation.primary.summary[lang]}</div>
+
+                <div className="print-hex-lines">
+                  {lines.map((val, idx) => {
+                    const isYang = val === 7 || val === 9;
+                    return isYang ? (
+                      <div key={idx} className="print-hex-line" />
+                    ) : (
+                      <div key={idx} className="print-hex-line broken">
+                        <div className="chunk" />
+                        <div className="chunk" />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {ichingInterpretation.movingLines.length > 0 && (
+                <div className="print-card-details">
+                  <div className="print-card-header">
+                    <h3>{lang === "es" ? "Líneas Mutantes" : "Mutating Lines"}</h3>
+                    <span className="print-badge">{lang === "es" ? "Puntos de Cambio" : "Points of Change"}</span>
+                  </div>
+                  {ichingInterpretation.movingLines.map(lineNum => (
+                    <div key={lineNum} style={{ marginBottom: "1rem" }}>
+                      <strong>{lang === "es" ? `Línea ${lineNum}:` : `Line ${lineNum}:`}</strong>
+                      <p style={{ margin: "0.25rem 0 0 0" }}>{getLineInterpretation(ichingInterpretation.primary, lineNum, lang)}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {ichingInterpretation.secondary && (
+                <div className="print-card-details">
+                  <div className="print-card-header">
+                    <h3>{ichingInterpretation.secondary.number}. {ichingInterpretation.secondary.name[lang]} ({ichingInterpretation.secondary.name.pinyin})</h3>
+                    <span className="print-badge">{lang === "es" ? "Hexagrama Futuro" : "Future Hexagram"}</span>
+                  </div>
+                  <div className="print-section-title">{lang === "es" ? "Imagen" : "Image"}</div>
+                  <div className="print-section-content">{ichingInterpretation.secondary.image[lang]}</div>
+                  <div className="print-section-title">{lang === "es" ? "Etapa del Viaje" : "Journey Stage"}</div>
+                  <div className="print-section-content">{ichingInterpretation.secondary.heroJourneyStage[lang]}</div>
+                  <div className="print-section-title">{lang === "es" ? "Análisis Psicológico" : "Psychological Analysis"}</div>
+                  <div className="print-section-content">{ichingInterpretation.secondary.summary[lang]}</div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Tarot Print Details */}
+          {activeOracle === "tarot" && tarotSpread && (
+            <div>
+              <h2 className="print-oracle-title">{lang === "es" ? "Interpretación del Tarot" : "Tarot Interpretation"}</h2>
+              {(["past", "present", "future"] as const).map(position => {
+                const card = tarotSpread[position];
+                const title = position === "past" ? text.pastTitle : position === "present" ? text.presentTitle : text.futureTitle;
+                return (
+                  <div key={position} className="print-card-details">
+                    <div className="print-card-header">
+                      <h3>{card.numberRoman}. {card.name[lang]}</h3>
+                      <span className="print-badge">{title}</span>
+                    </div>
+                    <div className="print-section-title">{lang === "es" ? "Etapa del Viaje" : "Journey Stage"}</div>
+                    <div className="print-section-content">{card.heroJourneyStage[lang]}</div>
+                    <div className="print-section-title">{text.tarotSummary}</div>
+                    <div className="print-section-content">{card.summary[lang]}</div>
+                    {card.symbolism && card.symbolism[lang] && (
+                      <>
+                        <div className="print-section-title">{text.tarotSymbolism}</div>
+                        <div className="print-section-content">{card.symbolism[lang]}</div>
+                      </>
+                    )}
+                    {card.jungianAnalysis && card.jungianAnalysis[lang] && (
+                      <>
+                        <div className="print-section-title">{text.tarotJungian}</div>
+                        <div className="print-section-content">{card.jungianAnalysis[lang]}</div>
+                      </>
+                    )}
+                    {card.herosJourney && card.herosJourney[lang] && (
+                      <>
+                        <div className="print-section-title">{text.tarotHero}</div>
+                        <div className="print-section-content">{card.herosJourney[lang]}</div>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Runes Print Details */}
+          {activeOracle === "runes" && runesSpread && (
+            <div>
+              <h2 className="print-oracle-title">{lang === "es" ? "Interpretación de las Runas" : "Runes Interpretation"}</h2>
+              {(["urd", "verdandi", "skuld"] as const).map(position => {
+                const rune = runesSpread[position];
+                const title = position === "urd" ? text.runesUrdTitle : position === "verdandi" ? text.runesVerdandiTitle : text.runesSkuldTitle;
+                return (
+                  <div key={position} className="print-card-details">
+                    <div className="print-card-header">
+                      <h3>{rune.name[lang]} ({rune.symbol})</h3>
+                      <span className="print-badge">{title}</span>
+                    </div>
+                    <div className="print-section-title">{lang === "es" ? "Fuerza y Deidad" : "Power & Deity"}</div>
+                    <div className="print-section-content">{rune.godOrPower[lang]}</div>
+                    <div className="print-section-title">{text.runesMeaning}</div>
+                    <div className="print-section-content">{rune.summary[lang]}</div>
+                    {rune.jungianAnalysis && rune.jungianAnalysis[lang] && (
+                      <>
+                        <div className="print-section-title">{text.runesJungian}</div>
+                        <div className="print-section-content">{rune.jungianAnalysis[lang]}</div>
+                      </>
+                    )}
+                    {rune.herosJourney && rune.herosJourney[lang] && (
+                      <>
+                        <div className="print-section-title">{text.runesHero}</div>
+                        <div className="print-section-content">{rune.herosJourney[lang]}</div>
+                      </>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
